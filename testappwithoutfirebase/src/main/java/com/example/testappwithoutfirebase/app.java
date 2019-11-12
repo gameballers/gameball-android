@@ -2,7 +2,7 @@ package com.example.testappwithoutfirebase;
 
 import android.app.Application;
 
-import com.gameball.gameball.GameBallApp;
+import com.gameball.androidx.GameBallApp;
 
 /**
  * Created by Ahmed Abdelmoneam Abdelfattah on 2/5/2019.

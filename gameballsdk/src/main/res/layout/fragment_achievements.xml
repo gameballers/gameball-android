@@ -14,14 +14,14 @@
         android:layout_marginTop="30dp"
         android:text="@string/achievements" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/achievements_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/achievements_title"
         android:layout_marginTop="5dp"
         tools:itemCount="9"
-        tools:layoutManager="android.support.v7.widget.GridLayoutManager"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/acheivments_item_layout"
         tools:orientation="vertical"
         tools:scrollbars="horizontal"

@@ -2,7 +2,7 @@ package com.moneam.gameball;
 
 import android.app.Application;
 
-import com.gameball.gameball.GameBallApp;
+import com.gameball.androidx.GameBallApp;
 
 /**
  * Created by Ahmed Abdelmoneam Abdelfattah on 8/23/2018.

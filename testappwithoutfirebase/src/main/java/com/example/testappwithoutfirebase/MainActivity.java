@@ -2,12 +2,12 @@ package com.example.testappwithoutfirebase;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +15,11 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.gameball.gameball.GameBallApp;
-import com.gameball.gameball.model.request.Action;
-import com.gameball.gameball.model.response.PlayerAttributes;
-import com.gameball.gameball.model.response.PlayerRegisterResponse;
-import com.gameball.gameball.network.Callback;
+import com.gameball.androidx.GameBallApp;
+import com.gameball.androidx.model.request.Action;
+import com.gameball.androidx.model.response.PlayerAttributes;
+import com.gameball.androidx.model.response.PlayerRegisterResponse;
+import com.gameball.androidx.network.Callback;
 
 import java.util.ArrayList;
 import java.util.HashMap;

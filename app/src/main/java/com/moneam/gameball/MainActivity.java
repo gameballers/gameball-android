@@ -1,10 +1,10 @@
 package com.moneam.gameball;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
-import com.gameball.gameball.GameBallApp;
+import com.gameball.androidx.GameBallApp;
 
 public class MainActivity extends AppCompatActivity {
 
