@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">GameBallSdk</string>
+    <string name="default_notification_channel_id">GAME_BALL_CHANNEL_ID</string>
+    <string name="achievements">Achievements</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="frubies">frubies</string>
+    <string name="you_are_on_level">You are on level</string>
+    <string name="next_level_at">Next level at</string>
+    <string name="points">Points</string>
+    <string name="progress">Progress</string>
+    <string name="status">Status</string>
+    <string name="locked">Locked!</string>
+    <string name="achieved">Achieved!</string>
+    <string name="keep_going">Keep Going!</string>
+    <string name="reach_level">You need to be on level</string>
+    <string name="you_need_to">You need to</string>
+    <string name="to_unlock_this_challenge">to unlock this challenge</string>
+    <string name="frubies_colen">Frubies: </string>
+    <string name="milestones">MileStones</string>
+    <string name="track_your_progress">Track your progress here</string>
+    <string name="pts">pts</string>
+    <string name="high_score">High Score</string>
+    <string name="ok">Ok</string>
+    <string name="hello">Hello</string>
+    <string name="share">share</string>
+    <string name="your_rank_is">Your rank is</string>
+    <string name="is_repeatable_high_score_txt">Break your high score and win this badge again!</string>
+    <string name="reward_text">%d %s | %d %s</string>
+    <string name="percentage">%d%%</string>
+    <string name="count_challenges">%d Challenges</string>
+    <string name="mission_challenge_achieved_count">%dx</string>
+</resources>
