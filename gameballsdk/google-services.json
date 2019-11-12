@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:252563989296:android:cf5a4f42fc122b54",
         "android_client_info": {
-          "package_name": "com.gameball.gameball"
+          "package_name": "com.gameball.androidx"
         }
       },
       "oauth_client": [
