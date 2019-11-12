@@ -54,7 +54,7 @@ apply plugin: 'com.google.gms.google-services'
 
 install {
     repositories.mavenInstaller {
-        pom.groupId = 'com.gameball'
+        pom.groupId = 'com.gameball.androidx'
         pom.version = '0.1'
         pom.artifactId = "gameball" //project.name
     }
