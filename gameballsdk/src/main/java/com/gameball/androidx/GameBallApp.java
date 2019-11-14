@@ -173,7 +173,7 @@ public class GameBallApp {
                 .subscribe(new SingleObserver<BaseResponse<ClientBotSettings>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        Log.i("ClientBotSettings","fetching Client settings");
                     }
 
                     @Override
