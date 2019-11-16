@@ -167,7 +167,6 @@ public class GameBallApp {
 
     private void getBotSettings() {
         gameBallApi.getBotSettings()
-                .retry()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<BaseResponse<ClientBotSettings>>() {
@@ -180,7 +179,7 @@ public class GameBallApp {
                     public void onSuccess(BaseResponse<ClientBotSettings> clientBotSettingsBaseResponse) {
                         SharedPreferencesUtils.getInstance().
                                 putClientBotSettings(clientBotSettingsBaseResponse.getResponse());
-                        initializeFirebase(null, clientBotSettingsBaseResponse.getResponse(), null);
+                        initializeFirebase(null, null);
                     }
 
                     @Override
@@ -210,44 +209,17 @@ public class GameBallApp {
     }
 
     private void initializeFirebase(final PlayerAttributes playerAttributes,
-                                    ClientBotSettings botSettings,
                                     final Callback<PlayerRegisterResponse> callback) {
-        if (botSettings.getClientFireBase() != null) {
-            if (clientFirebaseApp != null
-                    && clientFirebaseApp.getOptions().getApiKey().equals(API_KEY)
-                    && clientFirebaseApp.getOptions().getGcmSenderId().equals(SENDER_ID)
-                    && clientFirebaseApp.getOptions().getApplicationId().equals(APPLICATION_ID)) {
-                APPLICATION_ID = botSettings.getClientFireBase().getApplicationId();
-                API_KEY = botSettings.getClientFireBase().getWebApiKey();
-                SENDER_ID = botSettings.getClientFireBase().getSenderId();
 
-                if (APPLICATION_ID != null && API_KEY != null && SENDER_ID != null) {
-                    FirebaseOptions options = new FirebaseOptions.Builder()
-                            .setApplicationId(APPLICATION_ID)
-                            .setApiKey(API_KEY)
-                            .setGcmSenderId(SENDER_ID)
-                            .build();
+        if (mPlayerUniqueId != null && !mPlayerUniqueId.trim().isEmpty()) {
 
-                    // Initialize with secondary app.
-                    FirebaseApp.initializeApp(mContext, options, TAG);
-
-                    // Retrieve secondary app.
-                    clientFirebaseApp = FirebaseApp.getInstance(TAG);
+            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                @Override
+                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                    mDeviceToken = task.getResult().getToken();
+                    registerDevice(playerAttributes, callback);
                 }
-            }
-
-            if (mPlayerUniqueId != null && !mPlayerUniqueId.trim().isEmpty()) {
-
-                FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        mDeviceToken = task.getResult().getToken();
-                        registerDevice(playerAttributes, callback);
-                    }
-                });
-            }
-        } else {
-            registerDevice(playerAttributes, callback);
+            });
         }
     }
 
@@ -273,7 +245,7 @@ public class GameBallApp {
             mPlayerUniqueId = playerUniqueId;
             mPlayerTypeID = playerTypeID;
 
-            initializeFirebase(playerAttributes, SharedPreferencesUtils.getInstance().getClientBotSettings(), callback);
+            initializeFirebase(playerAttributes, callback);
         } else {
             Log.e(TAG, "Player registration: PlayerUniqueId cannot be empty");
         }
@@ -479,7 +451,7 @@ public class GameBallApp {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        callback.onError(e);
                     }
 
                     @Override
