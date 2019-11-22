@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_profile, container, false);
         initView();
         setupBotSettings();
         prepView();

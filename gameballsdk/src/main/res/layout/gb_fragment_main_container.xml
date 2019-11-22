@@ -82,13 +82,13 @@
                         android:paddingEnd="8dp"
                         android:drawablePadding="3dp"
                         android:drawableTint="@android:color/white"
-                        tools:drawableStart="@drawable/ic_diamon_outline"
+                        tools:drawableStart="@drawable/gb_ic_diamon_outline"
                         tools:text="1,233"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:gravity="center"
-                        android:fontFamily="@font/montserrat_semi_bold"
-                        android:background="@drawable/round_grey_bg" />
+                        android:fontFamily="@font/gb_montserrat_semi_bold"
+                        android:background="@drawable/gb_round_grey_bg" />
 
                     <ImageView
                         android:id="@+id/level_logo"
@@ -97,7 +97,7 @@
                         android:layout_marginTop="12dp"
                         app:layout_constraintStart_toStartOf="@id/hello_txt"
                         app:layout_constraintTop_toBottomOf="@id/txt_player_name"
-                        tools:background="@drawable/ic_diamond" />
+                        tools:background="@drawable/gb_ic_diamond" />
 
                     <TextView
                         android:id="@+id/level_name_title"
@@ -131,7 +131,7 @@
                         android:layout_height="4dp"
                         android:layout_marginTop="6dp"
                         android:progress="25"
-                        android:progressDrawable="@drawable/level_progress_drawable"
+                        android:progressDrawable="@drawable/gb_level_progress_drawable"
                         app:layout_constraintEnd_toEndOf="@id/level_name"
                         app:layout_constraintStart_toStartOf="@id/level_name"
                         app:layout_constraintTop_toBottomOf="@id/level_name" />
@@ -146,7 +146,7 @@
                         android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@id/level_progress"
                         app:layout_constraintTop_toBottomOf="@id/level_progress"
-                        android:drawableEnd="@drawable/ic_diamon_outline"
+                        android:drawableEnd="@drawable/gb_ic_diamon_outline"
                         android:drawablePadding="3dp"
                         android:drawableTint="#808080"
                         android:gravity="bottom|center"
@@ -184,8 +184,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
-                            android:drawableStart="@drawable/ic_diamond_outline"
-                            android:drawableLeft="@drawable/ic_diamond_outline"
+                            android:drawableStart="@drawable/gb_ic_diamond_outline"
+                            android:drawableLeft="@drawable/gb_ic_diamond_outline"
                             android:drawablePadding="5dp"
                             android:gravity="end|center"
                             tools:text="@string/frubies"
@@ -202,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="12dp"
                             android:layout_marginRight="12dp"
-                            android:fontFamily="@font/montserrat_light"
+                            android:fontFamily="@font/gb_montserrat_light"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -217,8 +217,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
                             android:layout_marginLeft="12dp"
-                            android:drawableStart="@drawable/ic_points"
-                            android:drawableLeft="@drawable/ic_points"
+                            android:drawableStart="@drawable/gb_ic_points"
+                            android:drawableLeft="@drawable/gb_ic_points"
                             android:drawablePadding="5dp"
                             android:gravity="end|center"
                             tools:text="@string/points"
@@ -234,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="3dp"
                             android:layout_marginLeft="3dp"
-                            android:fontFamily="@font/montserrat_light"
+                            android:fontFamily="@font/gb_montserrat_light"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
                             app:layout_constraintStart_toEndOf="@id/points_title"
@@ -287,7 +287,7 @@
                             android:paddingStart="25dp"
                             android:paddingEnd="25dp"
                             android:background="@null"
-                            android:src="@drawable/ic_close"
+                            android:src="@drawable/gb_ic_close"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
@@ -309,7 +309,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@drawable/shadow" />
+                android:background="@drawable/gb_shadow" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout
@@ -326,7 +326,7 @@
 
         <include
             android:id="@+id/no_internet_layout"
-            layout="@layout/no_internet_connection_layout"
+            layout="@layout/gb_no_internet_connection_layout"
             android:visibility="gone"
             />
 

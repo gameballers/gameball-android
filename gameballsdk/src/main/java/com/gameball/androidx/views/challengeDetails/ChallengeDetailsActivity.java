@@ -86,7 +86,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge_details);
+        setContentView(R.layout.gb_activity_challenge_details);
         initComponents();
         initView();
         prepView();
@@ -199,7 +199,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     {
         lockedChallengeIndicator.setVisibility(View.VISIBLE);
         notAchievedIndicator.setVisibility(View.VISIBLE);
-        statusIcon.setImageResource(R.drawable.ic_status_locked);
+        statusIcon.setImageResource(R.drawable.gb_ic_status_locked);
 
         String statusPrefix = String.format(Locale.getDefault(),"%s %s %s",
                 getString(R.string.reach_level), game.getLevelName(),
@@ -217,7 +217,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     private void setupAchievedStatus()
     {
         notAchievedIndicator.setVisibility(View.GONE);
-        statusIcon.setImageResource(R.drawable.ic_status_achieved);
+        statusIcon.setImageResource(R.drawable.gb_ic_status_achieved);
         status.setText(String.format(Locale.getDefault(),
                 "%s", getString(R.string.achieved)));
         statusDescription.setText(String.format(Locale.getDefault(), "%d time(s)",game.getAchievedCount()));
@@ -226,7 +226,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     private void setupNotAchievedStatus()
     {
         notAchievedIndicator.setVisibility(View.VISIBLE);
-        statusIcon.setImageResource(R.drawable.ic_status_keep_going);
+        statusIcon.setImageResource(R.drawable.gb_ic_status_keep_going);
         status.setText(R.string.keep_going);
 //        if(game.getBehaviorTypeId() == HIGH_SCORE_BASED)
 //            statusDescription.setText(String.format("$s $d $s",

@@ -25,7 +25,7 @@ public class LargeNotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_large_notification);
+        setContentView(R.layout.gb_activity_large_notification);
         init();
 
         fillView();

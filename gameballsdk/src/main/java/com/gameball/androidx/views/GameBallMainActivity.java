@@ -20,7 +20,7 @@ public class GameBallMainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameball_main);
+        setContentView(R.layout.gb_activity_gameball_main);
         ClientBotSettings botSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
 
         DisplayUtils.statusBarColorToSolid(this,botSettings.getBotMainColor());

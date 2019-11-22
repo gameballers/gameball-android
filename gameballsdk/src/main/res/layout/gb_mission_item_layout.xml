@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_white_st_light_grey_top_corners"
+    android:background="@drawable/gb_bg_white_st_light_grey_top_corners"
     android:clickable="true"
     android:focusable="true"
     android:layout_marginTop="20dp">
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="18dp"
         android:layout_marginStart="12dp"
-        android:src="@drawable/ic_diamond" />
+        android:src="@drawable/gb_ic_diamond" />
 
     <TextView
         android:id="@+id/mission_completion_percentage"
@@ -27,12 +27,12 @@
         app:layout_constraintTop_toTopOf="@id/mission_icon"
         app:layout_constraintBottom_toBottomOf="@id/mission_icon"
         android:layout_marginEnd="12dp"
-        android:background="@drawable/bg_light_grey_round"
+        android:background="@drawable/gb_bg_light_grey_round"
         tools:text="75%"
         android:textColor="@android:color/black"
         android:textSize="8sp"
         android:gravity="center"
-        android:fontFamily="@font/montserrat_semi_bold" />
+        android:fontFamily="@font/gb_montserrat_semi_bold" />
 
     <ImageView
         android:id="@+id/green_check_icon"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="@id/mission_icon"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="12dp"
-        android:src="@drawable/ic_green_check" />
+        android:src="@drawable/gb_ic_green_check" />
 
     <TextView
         android:id="@+id/mission_name"
@@ -56,7 +56,7 @@
         android:layout_marginEnd="12dp"
         android:textSize="12sp"
         android:textColor="@android:color/black"
-        android:fontFamily="@font/montserrat_light"
+        android:fontFamily="@font/gb_montserrat_light"
         tools:text="mission name " />
 
     <TextView
@@ -69,8 +69,8 @@
         app:layout_constraintTop_toBottomOf="@id/mission_name"
         android:textSize="10sp"
         android:textColor="@android:color/black"
-        android:fontFamily="@font/montserrat_semi_bold"
-        android:drawableStart="@drawable/ic_gift"
+        android:fontFamily="@font/gb_montserrat_semi_bold"
+        android:drawableStart="@drawable/gb_ic_gift"
         android:drawablePadding="4dp"
         tools:text="50 score | 10 points"
         android:gravity="center|start" />
@@ -84,7 +84,7 @@
         android:layout_marginTop="15dp"
         tools:text="4 Challenges"
         android:textSize="10sp"
-        android:fontFamily="@font/montserrat_regular" />
+        android:fontFamily="@font/gb_montserrat_regular" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toTopOf="@id/challenges_count"
         app:layout_constraintBottom_toBottomOf="@id/challenges_count"
         app:layout_constraintEnd_toEndOf="@id/mission_completion_percentage"
-        android:src="@drawable/ic_arrow_down_dark" />
+        android:src="@drawable/gb_ic_arrow_down_dark" />
 
     <net.cachapa.expandablelayout.ExpandableLayout
         android:id="@+id/missions_expandable_layout"
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/mission_challenges_item_layout"
+            tools:listitem="@layout/gb_mission_challenges_item_layout"
             tools:orientation="vertical"
             tools:itemCount="3" />
 

@@ -47,7 +47,7 @@ public class NotificationFragment extends Fragment implements NotificationsContr
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_notification, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_notification, container, false);
         initView();
         setupBotSettings();
         presenter.getNotificationHistory();

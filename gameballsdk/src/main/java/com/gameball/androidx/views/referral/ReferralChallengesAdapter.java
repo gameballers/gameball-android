@@ -44,7 +44,7 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.referral_challenge_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_referral_challenge_item_layout, parent, false);
         return new ItemViewHolder(row);
     }
 
@@ -79,7 +79,7 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
             holder.challengeProgress.startAnimation(progressAnimation);
 
         if(item.getAchievedCount() >= 1)
-            holder.challengeCheck.setImageResource(R.drawable.ic_checkmark);
+            holder.challengeCheck.setImageResource(R.drawable.gb_ic_checkmark);
         else
             holder.challengeCheck.setImageTintList(ColorStateList.
                     valueOf(Color.parseColor("#f2f2f2")));

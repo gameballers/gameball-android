@@ -8,7 +8,7 @@
     android:paddingBottom="15dp"
     android:paddingStart="15dp"
     android:paddingEnd="15dp"
-    android:background="@drawable/bg_white_st_grey_r8"
+    android:background="@drawable/gb_bg_white_st_grey_r8"
     android:layout_marginTop="12dp"
     >
     
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_flag"
+        android:src="@drawable/gb_ic_flag"
         />
 
     <TextView
@@ -45,8 +45,8 @@
         app:layout_constraintEnd_toEndOf="@id/milestone_description"
         app:layout_constraintTop_toBottomOf="@id/milestone_description"
         android:layout_marginTop="4dp"
-        android:drawableStart="@drawable/ic_gift"
-        android:drawableLeft="@drawable/ic_gift"
+        android:drawableStart="@drawable/gb_ic_gift"
+        android:drawableLeft="@drawable/gb_ic_gift"
         android:drawablePadding="5dp"
         android:textColor="@android:color/black"
         android:textSize="12sp"
@@ -67,7 +67,7 @@
         android:layout_marginRight="5dp"
         android:progress="0"
         tools:progress="50"
-        android:progressDrawable="@drawable/level_progress_drawable"
+        android:progressDrawable="@drawable/gb_level_progress_drawable"
         android:elevation="1dp"
         android:visibility="gone"
         tools:visibility="visible"
@@ -86,7 +86,7 @@
         android:layout_marginLeft="5dp"
         android:progress="0"
         tools:progress="50"
-        android:progressDrawable="@drawable/level_progress_drawable"
+        android:progressDrawable="@drawable/gb_level_progress_drawable"
         android:elevation="1dp"
         android:visibility="gone"
         tools:visibility="visible"

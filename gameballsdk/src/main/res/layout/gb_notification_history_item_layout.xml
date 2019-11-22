@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="12dp"
-        tools:src="@drawable/ic_diamond"
+        tools:src="@drawable/gb_ic_diamond"
         />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="5dp"
         tools:text="Hurry!"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/gb_montserrat_bold"
         android:textColor="@android:color/black"
         android:textSize="12sp"
         />
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/notification_title"
         app:layout_constraintEnd_toEndOf="parent"
-        android:fontFamily="@font/montserrat_light"
+        android:fontFamily="@font/gb_montserrat_light"
         android:textColor="#808080"
         tools:text="12 jan"
         android:textSize="10sp"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="@id/notification_date"
         android:layout_marginTop="5dp"
         tools:text="notifcation body notifcation body notifcation body "
-        android:fontFamily="@font/montserrat_light"
+        android:fontFamily="@font/gb_montserrat_light"
         android:textColor="@android:color/black"
         android:textSize="10sp"
         />

@@ -56,7 +56,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -671,7 +670,7 @@ public class GameBallApp {
     public void showNotification() {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        View layout = inflater.inflate(R.layout.gb_custom_toast_layout, null);
 
         Toast toast = new Toast(mContext);
 

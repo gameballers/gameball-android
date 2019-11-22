@@ -15,7 +15,7 @@
             android:layout_width="134dp"
             android:layout_height="134dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_no_internet"
+            android:src="@drawable/gb_ic_no_internet"
             />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_below="@id/no_internet_icon"
             android:layout_marginTop="32dp"
             android:gravity="center"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/gb_montserrat_bold"
             android:textSize="20sp"
             android:textColor="#808080"
             />
@@ -41,7 +41,7 @@
             android:layout_marginEnd="60dp"
             android:text="Check your internet connection and try again"
             android:textSize="14sp"
-            android:fontFamily="@font/montserrat_light"
+            android:fontFamily="@font/gb_montserrat_light"
             android:textColor="#808080"
             />
     </RelativeLayout>

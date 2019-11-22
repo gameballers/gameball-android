@@ -5,38 +5,34 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/notification_title"
+        android:id="@+id/achievements_title"
         style="@style/text_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="12dp"
-        android:text="Notifications" />
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/achievements" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notification_list"
+        android:id="@+id/achievements_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/notification_title"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="13dp"
+        android:layout_below="@id/achievements_title"
+        android:layout_marginTop="5dp"
         tools:itemCount="9"
-        tools:listitem="@layout/notification_history_item_layout"
-        />
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/gb_acheivments_item_layout"
+        tools:orientation="vertical"
+        tools:scrollbars="horizontal"
+        tools:spanCount="3" />
 
     <ProgressBar
         android:id="@+id/loading_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/notification_list"
+        android:layout_alignTop="@id/achievements_recyclerView"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         />
-
-    <include
-        android:id="@+id/no_internet_layout"
-        layout="@layout/no_internet_connection_layout"
-        android:visibility="gone"/>
 </RelativeLayout>

@@ -33,7 +33,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
     @Override
     public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.leaderboard_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_leaderboard_item_layout, parent, false);
         ItemRowHolder rowHolder = new ItemRowHolder(row);
         rowHolder.setIsRecyclable(false);
         return rowHolder;

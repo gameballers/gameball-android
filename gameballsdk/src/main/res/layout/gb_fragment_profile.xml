@@ -22,7 +22,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/achievements"
             android:textSize="16sp"
-            android:fontFamily="@font/montserrat_regular" />
+            android:fontFamily="@font/gb_montserrat_regular" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/achievements_recyclerView"
@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             tools:itemCount="9"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/acheivments_item_layout"
+            tools:listitem="@layout/gb_acheivments_item_layout"
             tools:orientation="vertical"
             tools:spanCount="3" />
 
@@ -48,7 +48,7 @@
             android:layout_marginTop="32dp"
             android:text="Missions"
             android:textSize="16sp"
-            android:fontFamily="@font/montserrat_regular" />
+            android:fontFamily="@font/gb_montserrat_regular" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/missions_recyclerView"
@@ -59,7 +59,7 @@
             android:layout_below="@id/missions_title"
             tools:itemCount="3"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/mission_item_layout"
+            tools:listitem="@layout/gb_mission_item_layout"
             tools:orientation="vertical" />
 
         <View
@@ -79,7 +79,7 @@
 
         <include
             android:id="@+id/no_internet_layout"
-            layout="@layout/no_internet_connection_layout"
+            layout="@layout/gb_no_internet_connection_layout"
             android:visibility="gone" />
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

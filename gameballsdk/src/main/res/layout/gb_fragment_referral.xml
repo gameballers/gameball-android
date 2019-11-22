@@ -39,7 +39,7 @@
             android:textColor="#1a1a1a"
             tools:text="Refer a friend to us and get reward once they signup. Share the below link with your friends."
             android:gravity="center"
-            android:fontFamily="@font/montserrat_light"
+            android:fontFamily="@font/gb_montserrat_light"
             />
 
         <TextView
@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@id/referral_text"
             app:layout_constraintEnd_toEndOf="@id/referral_text"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_primary_right_corener_round"
+            android:background="@drawable/gb_bg_primary_right_corener_round"
             android:text="@string/share"
             android:gravity="center"
             android:textColor="@android:color/white"
@@ -68,14 +68,14 @@
             app:layout_constraintEnd_toStartOf="@id/share_link_btn"
             android:paddingStart="11dp"
             android:paddingEnd="11dp"
-            android:background="@drawable/bg_grey_left_corener_round"
+            android:background="@drawable/gb_bg_grey_left_corener_round"
             android:textColor="#808080"
             android:textSize="10sp"
             tools:text="https://www.gameball.com/sfgG3e56Hs"
             android:gravity="start|center"
             android:lines="1"
             android:ellipsize="end"
-            android:fontFamily="@font/montserrat_light"
+            android:fontFamily="@font/gb_montserrat_light"
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -86,7 +86,7 @@
             app:layout_constraintStart_toStartOf="@id/referral_link"
             app:layout_constraintEnd_toEndOf="@id/share_link_btn"
             android:layout_marginTop="13dp"
-            tools:listitem="@layout/referral_challenge_item_layout"
+            tools:listitem="@layout/gb_referral_challenge_item_layout"
             tools:itemCount="3"
             />
 

@@ -47,7 +47,7 @@ public class ChallengesAdapter extends RecyclerView.Adapter<ChallengesAdapter.It
     @Override
     public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.acheivments_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_acheivments_item_layout, parent, false);
         ItemRowHolder rh = new ItemRowHolder(row);
         rh.setIsRecyclable(false);
         return rh;

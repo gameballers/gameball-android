@@ -46,7 +46,7 @@ public class MilestonesAdapter extends RecyclerView.Adapter<MilestonesAdapter.It
     public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.milestone_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_milestone_item_layout, parent, false);
         return new ItemRowHolder(row);
     }
 
@@ -76,7 +76,7 @@ public class MilestonesAdapter extends RecyclerView.Adapter<MilestonesAdapter.It
         }
 
         if(isMilestoneComplete(item))
-            holder.milestoneIcon.setImageResource(R.drawable.ic_complete);
+            holder.milestoneIcon.setImageResource(R.drawable.gb_ic_complete);
 
         setUpBotSettings(holder);
     }

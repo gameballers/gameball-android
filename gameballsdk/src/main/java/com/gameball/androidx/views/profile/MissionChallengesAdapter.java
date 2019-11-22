@@ -39,7 +39,7 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.mission_challenges_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_mission_challenges_item_layout, parent, false);
         ItemRowHolder rh = new ItemRowHolder(row);
         return rh;
     }

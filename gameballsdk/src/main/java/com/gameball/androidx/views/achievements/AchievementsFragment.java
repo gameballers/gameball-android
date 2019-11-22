@@ -42,7 +42,7 @@ public class AchievementsFragment extends Fragment implements AchievemetsContrac
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_achievements, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_achievements, container, false);
         initView();
         setupBotSettings();
         presenter.getAchievements();

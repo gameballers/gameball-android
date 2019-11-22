@@ -56,7 +56,7 @@ public class DialogManager
         if (context != null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View toastLayout = inflater.inflate(R.layout.custom_toast_layout, null);
+            final View toastLayout = inflater.inflate(R.layout.gb_custom_toast_layout, null);
             toastLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
 

@@ -47,7 +47,7 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        rootView = inflater.inflate(R.layout.fragment_referral, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_referral, container, false);
         initView();
         setupBotSettings();
         prepView();
@@ -86,8 +86,8 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
 
         if(DisplayUtils.isRTL(Locale.getDefault()))
         {
-            shareLinkBtn.setBackgroundResource(R.drawable.bg_primary_left_corener_round);
-            referralLink.setBackgroundResource(R.drawable.bg_grey_right_corener_round);
+            shareLinkBtn.setBackgroundResource(R.drawable.gb_bg_primary_left_corener_round);
+            referralLink.setBackgroundResource(R.drawable.gb_bg_grey_right_corener_round);
         }
 
         shareLinkBtn.setOnClickListener(this);

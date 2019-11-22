@@ -25,7 +25,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_gameball"
+            android:src="@drawable/gb_ic_gameball"
             />
 
         <TextView

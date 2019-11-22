@@ -2,7 +2,6 @@ package com.gameball.androidx.views.mainContainer;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -17,7 +16,6 @@ import androidx.annotation.Nullable;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -93,7 +91,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main_container, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_main_container, container, false);
         initView();
         setupBotSettings();
         presenter.getPlayerInfo();
@@ -208,23 +206,23 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         for (int i = 0; i < tabs.getTabCount(); i++) {
             switch (i) {
                 case 0:
-                    tabs.getTabAt(0).setIcon(R.drawable.ic_trophy);
+                    tabs.getTabAt(0).setIcon(R.drawable.gb_ic_trophy);
                     break;
                 case 1:
                     if (clientBotSettings.isReferralOn())
-                        tabs.getTabAt(1).setIcon(R.drawable.ic_referral);
+                        tabs.getTabAt(1).setIcon(R.drawable.gb_ic_referral);
                     else if (clientBotSettings.isEnableLeaderboard())
-                        tabs.getTabAt(1).setIcon(R.drawable.ic_leaderboard);
+                        tabs.getTabAt(1).setIcon(R.drawable.gb_ic_leaderboard);
                     else if (clientBotSettings.isEnableNotifications())
-                        tabs.getTabAt(1).setIcon(R.drawable.ic_notification);
+                        tabs.getTabAt(1).setIcon(R.drawable.gb_ic_notification);
                     break;
                 case 2:
                     if (clientBotSettings.isEnableLeaderboard())
-                        tabs.getTabAt(2).setIcon(R.drawable.ic_leaderboard);
+                        tabs.getTabAt(2).setIcon(R.drawable.gb_ic_leaderboard);
                     else if (clientBotSettings.isEnableNotifications())
-                        tabs.getTabAt(2).setIcon(R.drawable.ic_notification);
+                        tabs.getTabAt(2).setIcon(R.drawable.gb_ic_notification);
                 case 3:
-                    tabs.getTabAt(3).setIcon(R.drawable.ic_notification);
+                    tabs.getTabAt(3).setIcon(R.drawable.gb_ic_notification);
             }
         }
     }
@@ -270,11 +268,11 @@ public class MainContainerFragment extends DialogFragment implements MainContain
             if (clientBotSettings.isWalletPointsVisible()) {
                 singlePoints.setVisibility(View.VISIBLE);
                 singlePoints.setText(String.format(Locale.getDefault(),"%d",playerAttributes.getAccPoints()));
-                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.ic_points, 0,0,0);
+                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.gb_ic_points, 0,0,0);
             } else if (clientBotSettings.isRankPointsVisible()) {
                 singlePoints.setVisibility(View.VISIBLE);
                 singlePoints.setText(String.format(Locale.getDefault(), "%d",playerAttributes.getAccFrubies()));
-                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.ic_diamon_outline, 0,0,0);
+                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.gb_ic_diamon_outline, 0,0,0);
             } else {
                 singlePoints.setVisibility(View.GONE);
             }

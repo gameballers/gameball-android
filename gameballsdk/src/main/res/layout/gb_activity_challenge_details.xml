@@ -20,7 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_grey_curved_bottom"
+            android:background="@drawable/gb_bg_grey_curved_bottom"
             android:paddingBottom="37dp"
             >
 
@@ -28,7 +28,7 @@
                 android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_arrow_left"
+                android:src="@drawable/gb_ic_arrow_left"
                 android:layout_marginTop="25dp"
                 android:paddingLeft="25dp"
                 android:paddingStart="25dp"
@@ -44,7 +44,7 @@
                 android:layout_height="122dp"
                 android:layout_below="@id/back_btn"
                 android:layout_centerHorizontal="true"
-                tool:src="@drawable/ic_diamond"
+                tool:src="@drawable/gb_ic_diamond"
                 android:layout_marginTop="15dp"
                 />
 
@@ -69,9 +69,9 @@
                 android:layout_alignEnd="@id/challenge_icon"
                 android:layout_alignRight="@id/challenge_icon"
                 android:layout_alignTop="@id/challenge_icon"
-                android:background="@drawable/bg_dark_gery_round"
+                android:background="@drawable/gb_bg_dark_gery_round"
                 android:padding="3dp"
-                android:src="@drawable/ic_lock_white"
+                android:src="@drawable/gb_ic_lock_white"
                 />
 
             <TextView
@@ -112,8 +112,8 @@
                 android:layout_below="@id/challenge_description"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_gift"
-                android:drawableLeft="@drawable/ic_gift"
+                android:drawableStart="@drawable/gb_ic_gift"
+                android:drawableLeft="@drawable/gb_ic_gift"
                 android:drawablePadding="5dp"
                 android:textColor="@android:color/black"
                 android:textSize="10sp"
@@ -174,7 +174,7 @@
             android:progress="0"
             android:layout_marginTop="20dp"
             tool:progress="50"
-            android:progressDrawable="@drawable/level_progress_drawable"
+            android:progressDrawable="@drawable/gb_level_progress_drawable"
             android:elevation="1dp"
             android:visibility="gone"
             tool:visibility="visible"
@@ -263,7 +263,7 @@
                 android:textColor="#aaaaaa"
                 android:text="@string/is_repeatable_high_score_txt"
                 android:gravity="center"
-                android:fontFamily="@font/montserrat_light"
+                android:fontFamily="@font/gb_montserrat_light"
                 android:visibility="gone"
                 tool:visibility="visible"
                 />
@@ -292,7 +292,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginTop="20dp"
-                tool:src="@drawable/ic_status_locked"
+                tool:src="@drawable/gb_ic_status_locked"
                 />
 
             <TextView
@@ -319,7 +319,7 @@
                 android:textSize="14sp"
                 tool:text="4 time(s)"
                 android:textColor="#aaaaaa"
-                android:fontFamily="@font/montserrat_light"
+                android:fontFamily="@font/gb_montserrat_light"
                 android:gravity="center"
                 />
         </LinearLayout>
