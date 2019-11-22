@@ -2,6 +2,7 @@ package com.gameball.androidx.views.mainContainer;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -11,7 +12,10 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import androidx.annotation.Nullable;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +40,7 @@ import com.gameball.androidx.utils.ProgressBarAnimation;
 
 import java.util.Locale;
 
-public class MainContainerFragment extends DialogFragment implements MainContainerContract.View {
+public class MainContainerFragment extends DialogFragment implements MainContainerContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     private View rootView;
     private TextView txtPlayerName;
@@ -52,6 +56,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private TextView currentPointsValue;
     private View loadingIndicatorBg;
     private RelativeLayout noInternetConnectionLayout;
+    private SwipeRefreshLayout pullToRefresh;
 
     private Animation fadeIn;
 
@@ -136,6 +141,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         currentPointTitle = rootView.findViewById(R.id.points_title);
         loadingIndicatorBg = rootView.findViewById(R.id.loading_indicator_bg);
         noInternetConnectionLayout = rootView.findViewById(R.id.no_internet_layout);
+        pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
     }
 
     private void setupBotSettings() {
@@ -147,12 +153,14 @@ public class MainContainerFragment extends DialogFragment implements MainContain
                 PorterDuff.Mode.SRC_IN);
         currentFrubiesTitle.setText(clientBotSettings.getRankPointsName());
         currentPointTitle.setText(clientBotSettings.getWalletPointsName());
-
+        pullToRefresh.setColorSchemeColors(Color.parseColor(clientBotSettings.getBotMainColor()));
     }
 
     private void prepView() {
+        pullToRefresh.setOnRefreshListener(this);
         viewPager.setAdapter(tabsAdapter);
         tabs.setupWithViewPager(viewPager);
+
         tabs.setSelectedTabIndicatorHeight((int) DisplayUtils.convertDpToPixel(2));
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,6 +286,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     public void hideLoadingIndicator() {
         loadingIndicatorBg.setVisibility(View.GONE);
         loadingIndicator.setVisibility(View.GONE);
+        pullToRefresh.setRefreshing(false);
     }
 
     @Override
@@ -289,5 +298,17 @@ public class MainContainerFragment extends DialogFragment implements MainContain
             }
         }
         super.onStop();
+    }
+
+    @Override
+    public void onRefresh() {
+        clearTabItems();
+        presenter.getPlayerInfo();
+    }
+
+    private void clearTabItems() {
+        tabs.clearOnTabSelectedListeners();
+        tabs.removeAllTabs();
+        viewPager.removeAllViews();
     }
 }
