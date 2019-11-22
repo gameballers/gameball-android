@@ -47,6 +47,7 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
     @Override
     public void onBindViewHolder(@NonNull ItemRowHolder holder, int position) {
         Game item = mData.get(position);
+        holder.challengeProgress.setProgress(1);
 
         ImageDownloader.downloadImage(context, holder.icon, item.getIcon());
         holder.name.setText(item.getGameName());
@@ -81,7 +82,6 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
                 holder.challengeProgress.setVisibility(View.VISIBLE);
                 holder.challengeAchievedCount.setVisibility(View.GONE);
                 holder.lockedIndicator.setVisibility(View.GONE);
-
                 holder.challengeProgress.setProgress(item.getCompletionPercentage().intValue());
             }
         }
