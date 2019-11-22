@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.gameball.androidx.utils.ImageDownloader;
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRowHolder> {
     private Context context;
@@ -50,15 +53,27 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
 
         ImageDownloader.downloadImage(context, holder.missionIcon, item.getIcon());
         holder.missionName.setText(item.getQuestName());
-        holder.missionReward.setText(
-                context.getString(
-                        R.string.reward_text,
-                        item.getRewardFrubies(),
-                        clientBotSettings.getRankPointsName(),
-                        item.getRewardPoints(),
-                        clientBotSettings.getWalletPointsName()
-                )
-        );
+        if (item.getRewardPoints() > 0 && item.getRewardFrubies() > 0) {
+            holder.missionReward.setText(
+                    context.getString(
+                            R.string.reward_text,
+                            item.getRewardFrubies(),
+                            clientBotSettings.getRankPointsName(),
+                            item.getRewardPoints(),
+                            clientBotSettings.getWalletPointsName()
+                    )
+            );
+        } else if (item.getRewardPoints() > 0) {
+            holder.missionReward.setText(String.format(Locale.getDefault(),
+                    "%d %s",
+                    item.getRewardPoints(),
+                    clientBotSettings.getWalletPointsName()));
+        } else if(item.getRewardFrubies() > 0) {
+            holder.missionReward.setText(String.format(Locale.getDefault(),
+                    "%d %s",
+                    item.getRewardFrubies(),
+                    clientBotSettings.getRankPointsName()));
+        }
 
         holder.challengesCount.setText(
                 context.getString(R.string.count_challenges,

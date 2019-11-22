@@ -208,10 +208,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
         status.setText(getResources().getString(R.string.locked));
         statusDescription.setText(statusPrefix);
 
-        String challengeRewardStr = String.format(Locale.getDefault(),
-                "%d %s | %d %s", game.getRewardFrubies(), clientBotSettings.getRankPointsName(),
-                game.getRewardPoints(), clientBotSettings.getWalletPointsName());
-        challengeRewardTxt.setText(challengeRewardStr);
+        challengeRewardTxt.setText(getGameRewardText());
     }
 
     private void setupAchievedStatus()
@@ -236,10 +233,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
     private void setupViewsByBehaviourTypeId()
     {
-        String challengeRewardStr = String.format(Locale.getDefault(),
-                "%d %s | %d %s", game.getRewardFrubies(), clientBotSettings.getRankPointsName(),
-                game.getRewardPoints(), clientBotSettings.getWalletPointsName());
-        challengeRewardTxt.setText(challengeRewardStr);
+        challengeRewardTxt.setText(getGameRewardText());
         challengeRewardTxt.startAnimation(fadeIn);
 
         if (game.getBehaviorTypeId() == HIGH_SCORE_BASED)
@@ -265,6 +259,34 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
             progressTitle.startAnimation(fadeIn);
         }
+    }
+
+    private String getGameRewardText() {
+
+        String result = "";
+
+        if (game.getRewardPoints() > 0 && game.getRewardFrubies() > 0) {
+            result = getString(
+                            R.string.reward_text,
+                            game.getRewardFrubies(),
+                            clientBotSettings.getRankPointsName(),
+                            game.getRewardPoints(),
+                            clientBotSettings.getWalletPointsName()
+                    );
+
+        } else if (game.getRewardPoints() > 0) {
+            result = String.format(Locale.getDefault(),
+                    "%d %s",
+                    game.getRewardPoints(),
+                    clientBotSettings.getWalletPointsName());
+        } else if(game.getRewardFrubies() > 0) {
+            result = String.format(Locale.getDefault(),
+                    "%d %s",
+                    game.getRewardFrubies(),
+                    clientBotSettings.getRankPointsName());
+        }
+
+        return result;
     }
 
     private boolean isHideProgressLayout()
