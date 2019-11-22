@@ -20,7 +20,7 @@
         android:background="@drawable/gb_bg_white_st_grey_r8">
 
         <ImageButton
-            android:id="@+id/close_btn"
+            android:id="@+id/gb_close_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -38,7 +38,7 @@
             />
 
         <ImageView
-            android:id="@+id/notification_icon"
+            android:id="@+id/gb_notification_icon"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_centerHorizontal="true"
@@ -50,10 +50,10 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/notification_title"
+            android:id="@+id/gb_notification_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/notification_icon"
+            android:layout_below="@id/gb_notification_icon"
             android:layout_marginTop="12dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
@@ -67,10 +67,10 @@
 
 
         <TextView
-            android:id="@+id/notification_body"
+            android:id="@+id/gb_notification_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/notification_title"
+            android:layout_below="@id/gb_notification_title"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"

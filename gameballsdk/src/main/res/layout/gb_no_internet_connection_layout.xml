@@ -11,7 +11,7 @@
         android:layout_centerInParent="true"
         >
         <ImageView
-            android:id="@+id/no_internet_icon"
+            android:id="@+id/gb_no_internet_icon"
             android:layout_width="134dp"
             android:layout_height="134dp"
             android:layout_centerHorizontal="true"
@@ -19,11 +19,11 @@
             />
 
         <TextView
-            android:id="@+id/no_internet_title"
+            android:id="@+id/gb_no_internet_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="No Connection"
-            android:layout_below="@id/no_internet_icon"
+            android:layout_below="@id/gb_no_internet_icon"
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:fontFamily="@font/gb_montserrat_bold"
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/no_internet_title"
+            android:layout_below="@id/gb_no_internet_title"
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_marginStart="60dp"

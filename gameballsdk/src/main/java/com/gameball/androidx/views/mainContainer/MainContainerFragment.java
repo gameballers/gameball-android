@@ -132,24 +132,24 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     }*/
 
     private void initView() {
-        txtPlayerName = rootView.findViewById(R.id.txt_player_name);
-        btnClose = rootView.findViewById(R.id.btn_close);
-        tabs = rootView.findViewById(R.id.tabs);
-        viewPager = rootView.findViewById(R.id.view_pager);
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
-        levelLogo = rootView.findViewById(R.id.level_logo);
-        levelName = rootView.findViewById(R.id.level_name);
-        levelProgress = rootView.findViewById(R.id.level_progress);
-        nextLevelTitle = rootView.findViewById(R.id.next_level_title);
-        currentFrubiesValue = rootView.findViewById(R.id.current_frubies_value);
-        currentPointsValue = rootView.findViewById(R.id.current_points_value);
-        currentFrubiesTitle = rootView.findViewById(R.id.frubies_title);
-        currentPointTitle = rootView.findViewById(R.id.points_title);
-        loadingIndicatorBg = rootView.findViewById(R.id.loading_indicator_bg);
-        noInternetConnectionLayout = rootView.findViewById(R.id.no_internet_layout);
+        txtPlayerName = rootView.findViewById(R.id.gb_txt_player_name);
+        btnClose = rootView.findViewById(R.id.gb_btn_close);
+        tabs = rootView.findViewById(R.id.gb_tabs);
+        viewPager = rootView.findViewById(R.id.gb_view_pager);
+        loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
+        levelLogo = rootView.findViewById(R.id.gb_level_logo);
+        levelName = rootView.findViewById(R.id.gb_level_name);
+        levelProgress = rootView.findViewById(R.id.gb_level_progress);
+        nextLevelTitle = rootView.findViewById(R.id.gb_next_level_title);
+        currentFrubiesValue = rootView.findViewById(R.id.gb_rank_points_value);
+        currentPointsValue = rootView.findViewById(R.id.gb_wallet_points_value);
+        currentFrubiesTitle = rootView.findViewById(R.id.gb_ranke_name);
+        currentPointTitle = rootView.findViewById(R.id.gb_wallet_points_name);
+        loadingIndicatorBg = rootView.findViewById(R.id.gb_loading_indicator_bg);
+        noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
-        singlePoints = rootView.findViewById(R.id.single_points);
-        walletRankPointsContainer = rootView.findViewById(R.id.frubies_and_points_container);
+        singlePoints = rootView.findViewById(R.id.gb_single_points);
+        walletRankPointsContainer = rootView.findViewById(R.id.gb_rank_and_wallet_container);
     }
 
     private void setupBotSettings() {

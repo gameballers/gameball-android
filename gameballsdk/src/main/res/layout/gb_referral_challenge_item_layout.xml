@@ -8,7 +8,7 @@
     android:layout_marginTop="12dp">
 
     <ImageView
-        android:id="@+id/challenge_icon"
+        android:id="@+id/gb_challenge_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +19,7 @@
         />
     
     <ImageView
-        android:id="@+id/challenge_check"
+        android:id="@+id/gb_challenge_check"
         android:layout_width="20dp"
         android:layout_height="20dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,12 +31,12 @@
         />
     
     <TextView
-        android:id="@+id/challenge_achieved_count"
+        android:id="@+id/gb_challenge_achieved_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/challenge_check"
-        app:layout_constraintBottom_toBottomOf="@id/challenge_check"
-        app:layout_constraintEnd_toStartOf="@id/challenge_check"
+        app:layout_constraintTop_toTopOf="@id/gb_challenge_check"
+        app:layout_constraintBottom_toBottomOf="@id/gb_challenge_check"
+        app:layout_constraintEnd_toStartOf="@id/gb_challenge_check"
         android:textSize="12sp"
         android:text="x1"
         android:textColor="@android:color/black"
@@ -44,13 +44,13 @@
         />
 
     <TextView
-        android:id="@+id/challenge_name"
+        android:id="@+id/gb_challenge_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/challenge_icon"
-        app:layout_constraintStart_toEndOf="@id/challenge_icon"
-        app:layout_constraintEnd_toStartOf="@id/challenge_achieved_count"
-        app:layout_constraintBottom_toTopOf="@id/challenge_reward_txt"
+        app:layout_constraintTop_toTopOf="@id/gb_challenge_icon"
+        app:layout_constraintStart_toEndOf="@id/gb_challenge_icon"
+        app:layout_constraintEnd_toStartOf="@id/gb_challenge_achieved_count"
+        app:layout_constraintBottom_toTopOf="@id/gb_challenge_reward_txt"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:lines="1"
@@ -61,13 +61,13 @@
         />
 
     <TextView
-        android:id="@+id/challenge_reward_txt"
+        android:id="@+id/gb_challenge_reward_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/challenge_icon"
-        app:layout_constraintTop_toBottomOf="@id/challenge_name"
-        app:layout_constraintStart_toStartOf="@id/challenge_name"
-        app:layout_constraintEnd_toEndOf="@id/challenge_name"
+        app:layout_constraintBottom_toBottomOf="@id/gb_challenge_icon"
+        app:layout_constraintTop_toBottomOf="@id/gb_challenge_name"
+        app:layout_constraintStart_toStartOf="@id/gb_challenge_name"
+        app:layout_constraintEnd_toEndOf="@id/gb_challenge_name"
         app:layout_constraintVertical_chainStyle="packed"
         android:drawableStart="@drawable/gb_ic_gift"
         android:drawablePadding="5dp"
@@ -77,11 +77,11 @@
         />
 
     <ProgressBar
-        android:id="@+id/challenge_event_progress"
+        android:id="@+id/gb_challenge_event_progress"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        app:layout_constraintTop_toBottomOf="@id/challenge_icon"
+        app:layout_constraintTop_toBottomOf="@id/gb_challenge_icon"
         android:layout_marginTop="10dp"
         android:elevation="1dp"
         android:progress="50"

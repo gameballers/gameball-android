@@ -114,15 +114,15 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
             super(itemView);
 
             this.itemView = itemView;
-            missionIcon = itemView.findViewById(R.id.mission_icon);
-            missionCompletionPercentage = itemView.findViewById(R.id.mission_completion_percentage);
-            greenCheckIcon = itemView.findViewById(R.id.green_check_icon);
-            missionName = itemView.findViewById(R.id.mission_name);
-            missionReward = itemView.findViewById(R.id.mission_reward);
-            challengesCount = itemView.findViewById(R.id.challenges_count);
-            missionChallengesExpandableLayout = itemView.findViewById(R.id.missions_expandable_layout);
-            missionChallengesRecyclerView = itemView.findViewById(R.id.mission_challenges_recyclerView);
-            missionProgress = itemView.findViewById(R.id.mission_progress);
+            missionIcon = itemView.findViewById(R.id.gb_mission_icon);
+            missionCompletionPercentage = itemView.findViewById(R.id.gb_mission_completion_percentage);
+            greenCheckIcon = itemView.findViewById(R.id.gb_green_check_icon);
+            missionName = itemView.findViewById(R.id.gb_mission_name);
+            missionReward = itemView.findViewById(R.id.gb_mission_reward);
+            challengesCount = itemView.findViewById(R.id.gb_challenges_count);
+            missionChallengesExpandableLayout = itemView.findViewById(R.id.gb_missions_expandable_layout);
+            missionChallengesRecyclerView = itemView.findViewById(R.id.gb_mission_challenges_recyclerView);
+            missionProgress = itemView.findViewById(R.id.gb_mission_progress);
 
             itemView.setOnClickListener(this);
 

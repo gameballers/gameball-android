@@ -36,10 +36,10 @@ public class LargeNotificationActivity extends AppCompatActivity {
         if(getIntent() != null)
             notificationBodyObj = (NotificationBody) getIntent().getExtras().getSerializable(Constants.NOTIFICATION_OBJ);
 
-        notificationBody = findViewById(R.id.notification_body);
-        notificationIcon = findViewById(R.id.notification_icon);
-        notificationTitle = findViewById(R.id.notification_title);
-        closeBtn = findViewById(R.id.close_btn);
+        notificationBody = findViewById(R.id.gb_notification_body);
+        notificationIcon = findViewById(R.id.gb_notification_icon);
+        notificationTitle = findViewById(R.id.gb_notification_title);
+        closeBtn = findViewById(R.id.gb_close_btn);
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

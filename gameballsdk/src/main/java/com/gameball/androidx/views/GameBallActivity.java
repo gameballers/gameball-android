@@ -13,7 +13,7 @@ public class GameBallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gb_activity_game_ball);
 
-        findViewById(R.id.btn_close).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.gb_btn_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

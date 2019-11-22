@@ -65,10 +65,10 @@ public class DialogManager
             toast.setGravity(Gravity.TOP, 0, 10);
             toast.setView(toastLayout);
 
-            TextView text = toastLayout.findViewById(R.id.textView);
-            TextView title = toastLayout.findViewById(R.id.notification_title);
-            ImageButton closeBtn = toastLayout.findViewById(R.id.close_btn);
-            ImageView icon = toastLayout.findViewById(R.id.imageView);
+            TextView text = toastLayout.findViewById(R.id.gb_textView);
+            TextView title = toastLayout.findViewById(R.id.gb_notification_title);
+            ImageButton closeBtn = toastLayout.findViewById(R.id.gb_close_btn);
+            ImageView icon = toastLayout.findViewById(R.id.gb_imageView);
 
             text.setText(notificationBody.getBody());
             title.setText(notificationBody.getTitle());

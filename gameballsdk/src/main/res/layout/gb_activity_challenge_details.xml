@@ -25,7 +25,7 @@
             >
 
             <ImageButton
-                android:id="@+id/back_btn"
+                android:id="@+id/gb_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:src="@drawable/gb_ic_arrow_left"
@@ -39,46 +39,46 @@
                 />
 
             <ImageView
-                android:id="@+id/challenge_icon"
+                android:id="@+id/gb_challenge_icon"
                 android:layout_width="122dp"
                 android:layout_height="122dp"
-                android:layout_below="@id/back_btn"
+                android:layout_below="@id/gb_back_btn"
                 android:layout_centerHorizontal="true"
                 tool:src="@drawable/gb_ic_diamond"
                 android:layout_marginTop="15dp"
                 />
 
             <View
-                android:id="@+id/not_achieved_indicator"
+                android:id="@+id/gb_not_achieved_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignStart="@id/challenge_icon"
-                android:layout_alignEnd="@id/challenge_icon"
-                android:layout_alignLeft="@id/challenge_icon"
-                android:layout_alignRight="@id/challenge_icon"
-                android:layout_alignTop="@id/challenge_icon"
-                android:layout_alignBottom="@id/challenge_icon"
+                android:layout_alignStart="@id/gb_challenge_icon"
+                android:layout_alignEnd="@id/gb_challenge_icon"
+                android:layout_alignLeft="@id/gb_challenge_icon"
+                android:layout_alignRight="@id/gb_challenge_icon"
+                android:layout_alignTop="@id/gb_challenge_icon"
+                android:layout_alignBottom="@id/gb_challenge_icon"
                 android:background="#90efefef"
                 />
 
 
             <ImageView
-                android:id="@+id/locked_challenge_indicator"
+                android:id="@+id/gb_locked_challenge_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/challenge_icon"
-                android:layout_alignRight="@id/challenge_icon"
-                android:layout_alignTop="@id/challenge_icon"
+                android:layout_alignEnd="@id/gb_challenge_icon"
+                android:layout_alignRight="@id/gb_challenge_icon"
+                android:layout_alignTop="@id/gb_challenge_icon"
                 android:background="@drawable/gb_bg_dark_gery_round"
                 android:padding="3dp"
                 android:src="@drawable/gb_ic_lock_white"
                 />
 
             <TextView
-                android:id="@+id/challenge_name"
+                android:id="@+id/gb_challenge_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/challenge_icon"
+                android:layout_below="@id/gb_challenge_icon"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
@@ -90,14 +90,14 @@
                 />
 
             <TextView
-                android:id="@+id/challenge_description"
+                android:id="@+id/gb_challenge_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/challenge_name"
-                android:layout_alignStart="@id/challenge_name"
-                android:layout_alignEnd="@id/challenge_name"
-                android:layout_alignRight="@id/challenge_name"
-                android:layout_alignLeft="@id/challenge_name"
+                android:layout_below="@id/gb_challenge_name"
+                android:layout_alignStart="@id/gb_challenge_name"
+                android:layout_alignEnd="@id/gb_challenge_name"
+                android:layout_alignRight="@id/gb_challenge_name"
+                android:layout_alignLeft="@id/gb_challenge_name"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
                 tool:text="challenge description challenge description challenge description"
@@ -106,10 +106,10 @@
                 />
 
             <TextView
-                android:id="@+id/challenge_reward_txt"
+                android:id="@+id/gb_challenge_reward_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/challenge_description"
+                android:layout_below="@id/gb_challenge_description"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/gb_ic_gift"
@@ -127,7 +127,7 @@
         </RelativeLayout>
     
         <RelativeLayout
-        android:id="@+id/challenge_layout"
+        android:id="@+id/gb_challenge_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tool:visibility="visible"
@@ -135,7 +135,7 @@
         >
 
         <TextView
-            android:id="@+id/progress_title"
+            android:id="@+id/gb_progress_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -147,12 +147,12 @@
             />
 
         <TextView
-            android:id="@+id/challenge_target_event_count"
+            android:id="@+id/gb_challenge_target_event_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/challenge_event_description"
-            android:layout_alignEnd="@id/challenge_event_progress"
-            android:layout_alignRight="@id/challenge_event_progress"
+            android:layout_alignBaseline="@id/gb_challenge_event_description"
+            android:layout_alignEnd="@id/gb_challenge_event_progress"
+            android:layout_alignRight="@id/gb_challenge_event_progress"
             tool:text="10"
             android:textSize="10sp"
             android:textColor="#808080"
@@ -162,13 +162,13 @@
             />
 
         <ProgressBar
-            android:id="@+id/challenge_event_progress"
+            android:id="@+id/gb_challenge_event_progress"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:layout_below="@id/progress_title"
-            android:layout_alignStart="@id/progress_title"
-            android:layout_alignLeft="@id/progress_title"
+            android:layout_below="@id/gb_progress_title"
+            android:layout_alignStart="@id/gb_progress_title"
+            android:layout_alignLeft="@id/gb_progress_title"
             android:layout_marginEnd="25dp"
             android:layout_marginRight="25dp"
             android:progress="0"
@@ -181,14 +181,14 @@
             />
 
         <TextView
-            android:id="@+id/challenge_event_description"
+            android:id="@+id/gb_challenge_event_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/challenge_event_progress"
-            android:layout_toStartOf="@id/challenge_target_event_count"
-            android:layout_toLeftOf="@id/challenge_target_event_count"
-            android:layout_alignLeft="@id/challenge_event_progress"
-            android:layout_below="@id/challenge_event_progress"
+            android:layout_alignStart="@id/gb_challenge_event_progress"
+            android:layout_toStartOf="@id/gb_challenge_target_event_count"
+            android:layout_toLeftOf="@id/gb_challenge_target_event_count"
+            android:layout_alignLeft="@id/gb_challenge_event_progress"
+            android:layout_below="@id/gb_challenge_event_progress"
             android:layout_marginTop="7dp"
             android:gravity="center|start|left"
             tool:text="amount description"
@@ -200,14 +200,14 @@
     </RelativeLayout>
         
         <RelativeLayout
-            android:id="@+id/high_score_layout"
+            android:id="@+id/gb_high_score_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
             tool:visibility="visible"
             >
             <TextView
-                android:id="@+id/high_score_title"
+                android:id="@+id/gb_high_score_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -219,12 +219,12 @@
                 />
 
             <TextView
-                android:id="@+id/your_high_score_title"
+                android:id="@+id/gb_your_high_score_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/high_score_title"
-                android:layout_alignStart="@id/high_score_title"
-                android:layout_alignLeft="@id/high_score_title"
+                android:layout_below="@id/gb_high_score_title"
+                android:layout_alignStart="@id/gb_high_score_title"
+                android:layout_alignLeft="@id/gb_high_score_title"
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="20dp"
@@ -235,14 +235,14 @@
                 />
 
             <TextView
-                android:id="@+id/high_score_value"
+                android:id="@+id/gb_high_score_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/your_high_score_title"
-                android:layout_alignStart="@id/your_high_score_title"
-                android:layout_alignLeft="@id/your_high_score_title"
-                android:layout_alignEnd="@id/your_high_score_title"
-                android:layout_alignRight="@id/your_high_score_title"
+                android:layout_below="@id/gb_your_high_score_title"
+                android:layout_alignStart="@id/gb_your_high_score_title"
+                android:layout_alignLeft="@id/gb_your_high_score_title"
+                android:layout_alignEnd="@id/gb_your_high_score_title"
+                android:layout_alignRight="@id/gb_your_high_score_title"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 tool:text="3.56 KM"
@@ -252,12 +252,12 @@
                 />
 
             <TextView
-                android:id="@+id/is_repeatable_high_score_txt"
+                android:id="@+id/gb_is_repeatable_high_score_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/high_score_value"
-                android:layout_alignStart="@id/high_score_value"
-                android:layout_alignEnd="@id/high_score_value"
+                android:layout_below="@id/gb_high_score_value"
+                android:layout_alignStart="@id/gb_high_score_value"
+                android:layout_alignEnd="@id/gb_high_score_value"
                 android:layout_marginTop="8dp"
                 android:textSize="14sp"
                 android:textColor="#aaaaaa"
@@ -270,13 +270,13 @@
         </RelativeLayout>
         
         <LinearLayout
-            android:id="@+id/status_layout"
+            android:id="@+id/gb_status_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <TextView
-                android:id="@+id/status_title"
+                android:id="@+id/gb_status_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -288,7 +288,7 @@
                 />
 
             <ImageView
-                android:id="@+id/status_icon"
+                android:id="@+id/gb_status_icon"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginTop="20dp"
@@ -296,7 +296,7 @@
                 />
 
             <TextView
-                android:id="@+id/status_description"
+                android:id="@+id/gb_status_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -310,7 +310,7 @@
                 />
 
             <TextView
-                android:id="@+id/achieved_count"
+                android:id="@+id/gb_achieved_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"

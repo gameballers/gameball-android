@@ -111,28 +111,28 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
     private void initView()
     {
-        challengeIcon = findViewById(R.id.challenge_icon);
-        notAchievedIndicator = findViewById(R.id.not_achieved_indicator);
-        statusTitle = findViewById(R.id.status_title);
-        lockedChallengeIndicator = findViewById(R.id.locked_challenge_indicator);
-        challengeName = findViewById(R.id.challenge_name);
-        challengeDescription = findViewById(R.id.challenge_description);
-        challengeTargetEventCount = findViewById(R.id.challenge_target_event_count);
-        challengeRewardTxt = findViewById(R.id.challenge_reward_txt);
-        statusIcon = findViewById(R.id.status_icon);
-        status = findViewById(R.id.status_description);
-        statusDescription = findViewById(R.id.achieved_count);
-        backBtn = findViewById(R.id.back_btn);
-        challengeEventDescription = findViewById(R.id.challenge_event_description);
-        challengeLayout = findViewById(R.id.challenge_layout);
-        progressTitle = findViewById(R.id.progress_title);
-        challengeEventProgress = findViewById(R.id.challenge_event_progress);
+        challengeIcon = findViewById(R.id.gb_challenge_icon);
+        notAchievedIndicator = findViewById(R.id.gb_not_achieved_indicator);
+        statusTitle = findViewById(R.id.gb_status_title);
+        lockedChallengeIndicator = findViewById(R.id.gb_locked_challenge_indicator);
+        challengeName = findViewById(R.id.gb_challenge_name);
+        challengeDescription = findViewById(R.id.gb_challenge_description);
+        challengeTargetEventCount = findViewById(R.id.gb_challenge_target_event_count);
+        challengeRewardTxt = findViewById(R.id.gb_challenge_reward_txt);
+        statusIcon = findViewById(R.id.gb_status_icon);
+        status = findViewById(R.id.gb_status_description);
+        statusDescription = findViewById(R.id.gb_achieved_count);
+        backBtn = findViewById(R.id.gb_back_btn);
+        challengeEventDescription = findViewById(R.id.gb_challenge_event_description);
+        challengeLayout = findViewById(R.id.gb_challenge_layout);
+        progressTitle = findViewById(R.id.gb_progress_title);
+        challengeEventProgress = findViewById(R.id.gb_challenge_event_progress);
         challengeEventProgress.setProgress(1);
-        highScoreLayout = findViewById(R.id.high_score_layout);
-        highScoreTitle = findViewById(R.id.high_score_title);
-        highScoreValue = findViewById(R.id.high_score_value);
-        statusLayout = findViewById(R.id.status_layout);
-        isRepeatableHighScoreText = findViewById(R.id.is_repeatable_high_score_txt);
+        highScoreLayout = findViewById(R.id.gb_high_score_layout);
+        highScoreTitle = findViewById(R.id.gb_high_score_title);
+        highScoreValue = findViewById(R.id.gb_high_score_value);
+        statusLayout = findViewById(R.id.gb_status_layout);
+        isRepeatableHighScoreText = findViewById(R.id.gb_is_repeatable_high_score_txt);
     }
 
 
@@ -344,7 +344,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v)
     {
-        if (v.getId() == R.id.back_btn)
+        if (v.getId() == R.id.gb_back_btn)
         {
             onBackPressed();
         }

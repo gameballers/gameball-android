@@ -60,12 +60,12 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     }
 
     private void initView() {
-        filerBtn = rootView.findViewById(R.id.filer_btn);
-        leaderboardRecyclerview = rootView.findViewById(R.id.leaderboard_recyclerview);
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
-        leaderTitle = rootView.findViewById(R.id.leaderboard_title);
+        filerBtn = rootView.findViewById(R.id.gb_filer_btn);
+        leaderboardRecyclerview = rootView.findViewById(R.id.gb_leaderboard_recyclerview);
+        loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
+        leaderTitle = rootView.findViewById(R.id.gb_leaderboard_title);
         playerRank = rootView.findViewById(R.id.player_rank_value);
-        noInternetLayout = rootView.findViewById(R.id.no_internet_layout);
+        noInternetLayout = rootView.findViewById(R.id.gb_no_internet_layout);
     }
 
     private void setupBotSettings()

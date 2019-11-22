@@ -40,7 +40,7 @@ public class GameBallMainActivity extends AppCompatActivity
             fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                     android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
 
-            fragmentTransaction.replace(R.id.main_activity_container, fragment, tag);
+            fragmentTransaction.replace(R.id.gb_main_activity_container, fragment, tag);
 
             fragmentTransaction.commit();
         }

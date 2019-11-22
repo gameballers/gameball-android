@@ -56,10 +56,10 @@ public class NotificationFragment extends Fragment implements NotificationsContr
 
     private void initView()
     {
-        notificationsTitle = rootView.findViewById(R.id.notification_title);
-        notificationsList = rootView.findViewById(R.id.notification_list);
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
-        noInternetLayout = rootView.findViewById(R.id.no_internet_layout);
+        notificationsTitle = rootView.findViewById(R.id.gb_notification_title);
+        notificationsList = rootView.findViewById(R.id.gb_notification_list);
+        loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
+        noInternetLayout = rootView.findViewById(R.id.gb_no_internet_layout);
 
         notificationsList.setLayoutManager(new LinearLayoutManager(getContext()));
         notificationsList.setHasFixedSize(true);

@@ -110,14 +110,14 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
 
-            icon = itemView.findViewById(R.id.challenge_icon);
-            notAchievedIndicator = itemView.findViewById(R.id.not_achieved_indicator);
-            lockedIndicator = itemView.findViewById(R.id.locked_challenge_indicator);
-            name = itemView.findViewById(R.id.challenge_name);
-            greenCheckIcon = itemView.findViewById(R.id.green_check_icon);
-            challengeProgress = itemView.findViewById(R.id.challenge_progress);
-            challengeAchievedCount = itemView.findViewById(R.id.challenge_achieved_count);
-            arrowIcon = itemView.findViewById(R.id.arrow_icon);
+            icon = itemView.findViewById(R.id.gb_challenge_icon);
+            notAchievedIndicator = itemView.findViewById(R.id.gb_not_achieved_indicator);
+            lockedIndicator = itemView.findViewById(R.id.gb_locked_challenge_indicator);
+            name = itemView.findViewById(R.id.gb_challenge_name);
+            greenCheckIcon = itemView.findViewById(R.id.gb_green_check_icon);
+            challengeProgress = itemView.findViewById(R.id.gb_challenge_progress);
+            challengeAchievedCount = itemView.findViewById(R.id.gb_challenge_achieved_count);
+            arrowIcon = itemView.findViewById(R.id.gb_arrow_icon);
             arrowIcon.setColorFilter(Color.parseColor(clientBotSettings.getBotMainColor()));
 
             LayerDrawable eventProgress = (LayerDrawable) challengeProgress.getProgressDrawable();

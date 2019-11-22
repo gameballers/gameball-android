@@ -87,10 +87,10 @@ public class NotificationsHistoryAdapter extends RecyclerView.Adapter<Notificati
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
 
-            icon = itemView.findViewById(R.id.notification_icon);
-            title = itemView.findViewById(R.id.notification_title);
-            body = itemView.findViewById(R.id.notification_body);
-            date = itemView.findViewById(R.id.notification_date);
+            icon = itemView.findViewById(R.id.gb_notification_icon);
+            title = itemView.findViewById(R.id.gb_notification_title);
+            body = itemView.findViewById(R.id.gb_notification_body);
+            date = itemView.findViewById(R.id.gb_notification_date);
         }
     }
 }

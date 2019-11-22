@@ -50,9 +50,9 @@ public class AchievementsFragment extends Fragment implements AchievemetsContrac
     }
 
     private void initView() {
-        achievementTitle = rootView.findViewById(R.id.achievements_title);
-        achievementsRecyclerView = rootView.findViewById(R.id.achievements_recyclerView);
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
+        achievementTitle = rootView.findViewById(R.id.gb_achievements_title);
+        achievementsRecyclerView = rootView.findViewById(R.id.gb_achievements_recyclerView);
+        loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
         achievementsRecyclerView.setHasFixedSize(true);
         achievementsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         achievementsRecyclerView.setAdapter(challengesAdapter);

@@ -81,13 +81,13 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     }
 
     private void initView() {
-        achievementTitle = rootView.findViewById(R.id.achievements_title);
-        achievementsRecyclerView = rootView.findViewById(R.id.achievements_recyclerView);
-        profileLoadingIndicator = rootView.findViewById(R.id.profile_data_loading_indicator);
-        profileLoadingIndicatorBg = rootView.findViewById(R.id.profile_data_loading_indicator_bg);
-        noInternetConnectionLayout = rootView.findViewById(R.id.no_internet_layout);
-        missionsTitle = rootView.findViewById(R.id.missions_title);
-        missionRecyclerView = rootView.findViewById(R.id.missions_recyclerView);
+        achievementTitle = rootView.findViewById(R.id.gb_achievements_title);
+        achievementsRecyclerView = rootView.findViewById(R.id.gb_achievements_recyclerView);
+        profileLoadingIndicator = rootView.findViewById(R.id.gb_profile_data_loading_indicator);
+        profileLoadingIndicatorBg = rootView.findViewById(R.id.gb_profile_data_loading_indicator_bg);
+        noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
+        missionsTitle = rootView.findViewById(R.id.gb_missions_title);
+        missionRecyclerView = rootView.findViewById(R.id.gb_missions_recyclerView);
 
     }
 

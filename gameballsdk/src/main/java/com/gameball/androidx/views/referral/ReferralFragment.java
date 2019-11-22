@@ -73,11 +73,11 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
 
     private void initView()
     {
-        shareLinkBtn = rootView.findViewById(R.id.share_link_btn);
-        referralLink = rootView.findViewById(R.id.referral_link);
-        referralHeadline = rootView.findViewById(R.id.referral_headline);
-        referralText = rootView.findViewById(R.id.referral_text);
-        referralChallengeLs = rootView.findViewById(R.id.referral_challenge_ls);
+        shareLinkBtn = rootView.findViewById(R.id.gb_share_link_btn);
+        referralLink = rootView.findViewById(R.id.gb_referral_link);
+        referralHeadline = rootView.findViewById(R.id.gb_referral_headline);
+        referralText = rootView.findViewById(R.id.gb_referral_text);
+        referralChallengeLs = rootView.findViewById(R.id.gb_referral_challenge_ls);
 
         referralChallengeLs.setLayoutManager(new LinearLayoutManager(getContext()));
         referralChallengeLs.setNestedScrollingEnabled(true);

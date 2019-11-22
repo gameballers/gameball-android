@@ -109,12 +109,12 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
         public ItemViewHolder(View itemView)
         {
             super(itemView);
-            challengeIcon = itemView.findViewById(R.id.challenge_icon);
-            challengeCheck = itemView.findViewById(R.id.challenge_check);
-            challengeAchievedCount = itemView.findViewById(R.id.challenge_achieved_count);
-            challengeName = itemView.findViewById(R.id.challenge_name);
-            challengeRewardTxt = itemView.findViewById(R.id.challenge_reward_txt);
-            challengeProgress = itemView.findViewById(R.id.challenge_event_progress);
+            challengeIcon = itemView.findViewById(R.id.gb_challenge_icon);
+            challengeCheck = itemView.findViewById(R.id.gb_challenge_check);
+            challengeAchievedCount = itemView.findViewById(R.id.gb_challenge_achieved_count);
+            challengeName = itemView.findViewById(R.id.gb_challenge_name);
+            challengeRewardTxt = itemView.findViewById(R.id.gb_challenge_reward_txt);
+            challengeProgress = itemView.findViewById(R.id.gb_challenge_event_progress);
 
             itemView.setOnClickListener(this);
         }

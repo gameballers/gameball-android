@@ -220,13 +220,13 @@ public class MilestonesAdapter extends RecyclerView.Adapter<MilestonesAdapter.It
         public ItemRowHolder(View itemView)
         {
             super(itemView);
-            milestoneIcon = itemView.findViewById(R.id.milestone_icon);
-            milestoneDescription = itemView.findViewById(R.id.milestone_description);
-            mileStoneRewardText = itemView.findViewById(R.id.mileStone_reward_text);
-            milestoneActionProgress = itemView.findViewById(R.id.milestone_action_progress);
-            milestoneAmountProgress = itemView.findViewById(R.id.milestone_amount_progress);
-            targetAmountCount = itemView.findViewById(R.id.milestone_target_amount_count);
-            targetActionCount = itemView.findViewById(R.id.milestone_target_action_count);
+            milestoneIcon = itemView.findViewById(R.id.gb_milestone_icon);
+            milestoneDescription = itemView.findViewById(R.id.gb_milestone_description);
+            mileStoneRewardText = itemView.findViewById(R.id.gb_mileStone_reward_text);
+            milestoneActionProgress = itemView.findViewById(R.id.gb_milestone_action_progress);
+            milestoneAmountProgress = itemView.findViewById(R.id.gb_milestone_amount_progress);
+            targetAmountCount = itemView.findViewById(R.id.gb_milestone_target_amount_count);
+            targetActionCount = itemView.findViewById(R.id.gb_milestone_target_action_count);
 
             itemView.setOnClickListener(this);
         }
