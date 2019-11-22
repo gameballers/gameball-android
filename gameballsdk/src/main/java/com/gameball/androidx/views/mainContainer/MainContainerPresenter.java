@@ -3,6 +3,7 @@ package com.gameball.androidx.views.mainContainer;
 import com.gameball.androidx.local.LocalDataSource;
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.response.BaseResponse;
+import com.gameball.androidx.model.response.ClientBotSettings;
 import com.gameball.androidx.model.response.PlayerInfoResponse;
 import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSource;
 
@@ -32,32 +33,54 @@ public class MainContainerPresenter implements MainContainerContract.Presenter
     {
         view.showLoadingIndicator();
 
-        profileRemoteDataSource.getPlayerInfo(sharedPreferencesUtils.getPlayerUniqueId())
-                .subscribe(new SingleObserver<BaseResponse<PlayerInfoResponse>>()
-                {
+
+        profileRemoteDataSource.getBotSettings()
+                .subscribe(new SingleObserver<BaseResponse<ClientBotSettings>>() {
                     @Override
-                    public void onSubscribe(Disposable d)
-                    {
+                    public void onSubscribe(Disposable d) {
                         disposable.add(d);
                     }
 
                     @Override
-                    public void onSuccess(BaseResponse<PlayerInfoResponse> playerInfoResponseBaseResponse)
-                    {
-                        localDataSource.playerAttributes = playerInfoResponseBaseResponse.getResponse().
-                                getPlayerAttributes();
-                        localDataSource.nextLevel = playerInfoResponseBaseResponse.getResponse().
-                                getNextLevel();
-                        view.hideLoadingIndicator();
-                        view.onProfileInfoLoaded(localDataSource.playerAttributes, localDataSource.nextLevel);
+                    public void onSuccess(BaseResponse<ClientBotSettings> clientBotSettingsBaseResponse) {
+                        sharedPreferencesUtils.putClientBotSettings(clientBotSettingsBaseResponse.getResponse());
+                        view.updateBotSettings();
+
+                        profileRemoteDataSource.getPlayerInfo(sharedPreferencesUtils.getPlayerUniqueId())
+                                .subscribe(new SingleObserver<BaseResponse<PlayerInfoResponse>>()
+                                {
+                                    @Override
+                                    public void onSubscribe(Disposable d)
+                                    {
+                                        disposable.add(d);
+                                    }
+
+                                    @Override
+                                    public void onSuccess(BaseResponse<PlayerInfoResponse> playerInfoResponseBaseResponse)
+                                    {
+                                        localDataSource.playerAttributes = playerInfoResponseBaseResponse.getResponse().
+                                                getPlayerAttributes();
+                                        localDataSource.nextLevel = playerInfoResponseBaseResponse.getResponse().
+                                                getNextLevel();
+                                        view.hideLoadingIndicator();
+                                        view.onProfileInfoLoaded(localDataSource.playerAttributes, localDataSource.nextLevel);
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e)
+                                    {
+                                        e.printStackTrace();
+                                        view.showNoInterNetConnection();
+                                        view.hideLoadingIndicator();
+                                    }
+                                });
                     }
 
                     @Override
-                    public void onError(Throwable e)
-                    {
-                        e.printStackTrace();
+                    public void onError(Throwable e) {
                         view.showNoInterNetConnection();
                         view.hideLoadingIndicator();
+                        e.printStackTrace();
                     }
                 });
     }

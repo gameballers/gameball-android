@@ -11,6 +11,7 @@ public interface MainContainerContract {
     {
         void onProfileInfoLoaded(PlayerAttributes playerAttributes, Level nextLevel);
         void showNoInterNetConnection();
+        void updateBotSettings();
     }
 
     interface Presenter extends BasePresenter

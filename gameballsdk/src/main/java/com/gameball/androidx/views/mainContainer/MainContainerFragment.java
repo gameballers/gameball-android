@@ -3,6 +3,7 @@ package com.gameball.androidx.views.mainContainer;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -10,13 +11,17 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
+
 import androidx.annotation.Nullable;
+
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +62,9 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private View loadingIndicatorBg;
     private RelativeLayout noInternetConnectionLayout;
     private SwipeRefreshLayout pullToRefresh;
+    private TextView singlePoints;
+
+    private ConstraintLayout walletRankPointsContainer;
 
     private Animation fadeIn;
 
@@ -142,6 +150,8 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         loadingIndicatorBg = rootView.findViewById(R.id.loading_indicator_bg);
         noInternetConnectionLayout = rootView.findViewById(R.id.no_internet_layout);
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
+        singlePoints = rootView.findViewById(R.id.single_points);
+        walletRankPointsContainer = rootView.findViewById(R.id.frubies_and_points_container);
     }
 
     private void setupBotSettings() {
@@ -154,6 +164,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         currentFrubiesTitle.setText(clientBotSettings.getRankPointsName());
         currentPointTitle.setText(clientBotSettings.getWalletPointsName());
         pullToRefresh.setColorSchemeColors(Color.parseColor(clientBotSettings.getBotMainColor()));
+        singlePoints.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(clientBotSettings.getBotMainColor())));
     }
 
     private void prepView() {
@@ -234,16 +245,40 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         noInternetConnectionLayout.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void updateBotSettings() {
+        clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
+    }
+
     private void fillPlayerData(PlayerAttributes playerAttributes, Level nextLevel) {
         levelName.setText(playerAttributes.getLevel().getName());
         if (playerAttributes.getLevel().getIcon() != null)
             ImageDownloader.downloadImage(getContext(), levelLogo,
                     playerAttributes.getLevel().getIcon().getFileName());
 
-        currentPointsValue.setText(String.format(Locale.getDefault(),
-                "%d", playerAttributes.getAccPoints()));
-        currentFrubiesValue.setText(String.format(Locale.getDefault(),
-                "%d", playerAttributes.getAccFrubies()));
+        if (clientBotSettings.isWalletPointsVisible() && clientBotSettings.isRankPointsVisible()) {
+
+            walletRankPointsContainer.setVisibility(View.VISIBLE);
+            singlePoints.setVisibility(View.GONE);
+            currentPointsValue.setText(String.format(Locale.getDefault(),
+                    "%d", playerAttributes.getAccPoints()));
+            currentFrubiesValue.setText(String.format(Locale.getDefault(),
+                    "%d", playerAttributes.getAccFrubies()));
+        } else {
+            walletRankPointsContainer.setVisibility(View.GONE);
+
+            if (clientBotSettings.isWalletPointsVisible()) {
+                singlePoints.setVisibility(View.VISIBLE);
+                singlePoints.setText(String.format(Locale.getDefault(),"%d",playerAttributes.getAccPoints()));
+                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.ic_points, 0,0,0);
+            } else if (clientBotSettings.isRankPointsVisible()) {
+                singlePoints.setVisibility(View.VISIBLE);
+                singlePoints.setText(String.format(Locale.getDefault(), "%d",playerAttributes.getAccFrubies()));
+                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.ic_diamon_outline, 0,0,0);
+            } else {
+                singlePoints.setVisibility(View.GONE);
+            }
+        }
 
         if (nextLevel != null) {
             nextLevelTitle.setText(String.format(Locale.getDefault(),
@@ -278,6 +313,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
 
     @Override
     public void showLoadingIndicator() {
+        noInternetConnectionLayout.setVisibility(View.GONE);
         loadingIndicatorBg.setVisibility(View.VISIBLE);
         loadingIndicator.setVisibility(View.VISIBLE);
     }
