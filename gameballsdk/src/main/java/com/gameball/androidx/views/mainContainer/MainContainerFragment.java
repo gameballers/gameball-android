@@ -13,6 +13,7 @@ import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -61,7 +62,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private RelativeLayout noInternetConnectionLayout;
     private SwipeRefreshLayout pullToRefresh;
     private TextView singlePoints;
-
+    private AppBarLayout appBarLayout;
     private ConstraintLayout walletRankPointsContainer;
 
     private Animation fadeIn;
@@ -150,6 +151,18 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
         singlePoints = rootView.findViewById(R.id.gb_single_points);
         walletRankPointsContainer = rootView.findViewById(R.id.gb_rank_and_wallet_container);
+        appBarLayout = rootView.findViewById(R.id.gb_appbar_layout);
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset >= 0) {
+                    pullToRefresh.setEnabled(true);
+                } else {
+                    pullToRefresh.setEnabled(false);
+                }
+            }
+        });
     }
 
     private void setupBotSettings() {

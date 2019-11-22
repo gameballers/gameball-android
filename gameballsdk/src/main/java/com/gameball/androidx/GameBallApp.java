@@ -274,10 +274,6 @@ public class GameBallApp {
     }
 
     private void sendNotification(final NotificationBody messageBody) {
-        Intent intent = new Intent(MAIN_ACTIVITY_ACTION);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
 
         String channelId = mContext.getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -288,14 +284,10 @@ public class GameBallApp {
                         .setAutoCancel(true)
                         .setSmallIcon(mNotificationIcon)
                         .setSound(defaultSoundUri);
-//                        .setContentIntent(pendingIntent);
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-
-//                DialogManager.showCustomNotification(mContext, messageBody);
-//                Toast.makeText(mContext, messageBody, Toast.LENGTH_SHORT).show();
 
                 Intent notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
                 notificationIntent.putExtra(Constants.NOTIFICATION_OBJ, messageBody);
