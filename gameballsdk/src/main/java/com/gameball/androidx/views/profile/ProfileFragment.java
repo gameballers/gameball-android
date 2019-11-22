@@ -113,8 +113,14 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Override
     public void onWithUnlocksLoaded(ArrayList<Game> games, ArrayList<Mission> missions)
     {
-        challengesAdapter.setmData(games);
-        challengesAdapter.notifyDataSetChanged();
+        if(games != null && games.size() > 0) {
+            challengesAdapter.setmData(games);
+            challengesAdapter.notifyDataSetChanged();
+        } else {
+            achievementTitle.setVisibility(View.GONE);
+            achievementsRecyclerView.setVisibility(View.GONE);
+
+        }
 
         if (missions != null && !missions.isEmpty()) {
             missionsTitle.setVisibility(View.VISIBLE);

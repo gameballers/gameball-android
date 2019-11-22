@@ -73,7 +73,7 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
             if (item.getCompletionPercentage() != null)
                 holder.missionCompletionPercentage.setText(
                         context.getString(R.string.percentage,
-                                item.getCompletionPercentage())
+                                item.getCompletionPercentage().intValue())
                 );
         } else {
             holder.greenCheckIcon.setVisibility(View.VISIBLE);

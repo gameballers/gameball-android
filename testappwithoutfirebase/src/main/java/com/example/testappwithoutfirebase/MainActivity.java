@@ -182,10 +182,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Action action = new Action();
 
                 HashMap<String, Object> metaData = new HashMap<>();
-                metaData.put("Amount", 5000);
+//                metaData.put("Amount", 5000);
 
 
-                action.addEvent("Buy", metaData);
+                action.addEvent("add to cart", metaData);
 
                 gameBallApp.addAction(action, new Callback()
                 {
