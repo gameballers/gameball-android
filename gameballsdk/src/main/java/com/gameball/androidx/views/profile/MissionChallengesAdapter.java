@@ -1,6 +1,7 @@
 package com.gameball.androidx.views.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
@@ -17,7 +18,10 @@ import com.gameball.androidx.R;
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.response.ClientBotSettings;
 import com.gameball.androidx.model.response.Game;
+import com.gameball.androidx.utils.Constants;
 import com.gameball.androidx.utils.ImageDownloader;
+import com.gameball.androidx.views.challengeDetails.ChallengeDetailsActivity;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -96,7 +100,7 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
         this.mData = mData;
     }
 
-    public class ItemRowHolder extends RecyclerView.ViewHolder {
+    public class ItemRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView icon;
         private ImageView notAchievedIndicator;
         private ImageView lockedIndicator;
@@ -122,6 +126,18 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
 
             LayerDrawable eventProgress = (LayerDrawable) challengeProgress.getProgressDrawable();
             eventProgress.setColorFilter(Color.parseColor(clientBotSettings.getBotMainColor()), PorterDuff.Mode.SRC_IN);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            final int pos = getLayoutPosition();
+            int pos1 = getAdapterPosition();
+            if (pos == pos1) {
+                Intent intent = new Intent(context, ChallengeDetailsActivity.class);
+                intent.putExtra(Constants.GAME_OBJ_KEY,new Gson().toJson(mData.get(pos)));
+                context.startActivity(intent);
+            }
         }
     }
 }

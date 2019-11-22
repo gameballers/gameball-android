@@ -51,7 +51,7 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_leader_board, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_leader_board, container, false);
         initView();
         setupBotSettings();
         prepView();
