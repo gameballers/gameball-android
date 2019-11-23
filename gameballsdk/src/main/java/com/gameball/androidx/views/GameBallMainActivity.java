@@ -4,7 +4,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.gameball.androidx.R;
 import com.gameball.androidx.local.LocalDataSource;
@@ -23,6 +27,13 @@ public class GameBallMainActivity extends AppCompatActivity
         setContentView(R.layout.gb_activity_gameball_main);
 
         updateStatusBarColor();
+        findViewById(R.id.gb_footer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gameball.co/landing_mobile/?utm_source=Mobile%20apps&utm_medium=Mobile%20footer&utm_campaign=Mobile%20users"));
+                startActivity(browserIntent);
+            }
+        });
 
         navigateToFragment(new MainContainerFragment());
 

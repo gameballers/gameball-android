@@ -73,6 +73,8 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
                     "%d %s",
                     item.getRewardFrubies(),
                     clientBotSettings.getRankPointsName()));
+        } else {
+            holder.missionReward.setVisibility(View.GONE);
         }
 
         holder.challengesCount.setText(

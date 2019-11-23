@@ -298,14 +298,14 @@ public class GameBallApp {
                         DialogManager.showCustomNotification(mContext,messageBody);
                         break;
                     case NotificationBody.LARGE_TOAST:
-                        notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
+                        notificationIntent = new Intent(mContext, PopupNotificationActivity.class);
                         notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
                         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(notificationIntent);
                         break;
                     case NotificationBody.POPUP:
                     default:
-                        notificationIntent = new Intent(mContext, PopupNotificationActivity.class);
+                        notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
                         notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
                         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(notificationIntent);

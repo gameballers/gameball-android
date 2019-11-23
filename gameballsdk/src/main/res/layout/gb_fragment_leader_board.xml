@@ -89,4 +89,25 @@
         layout="@layout/gb_no_internet_connection_layout"
         android:visibility="gone"/>
 
+    <ImageView
+        android:id="@+id/leaderboard_empty_state_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/gb_leaderboard_empty"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/leaderboard_empty_state_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/leaderboard_empty_state_iv"
+        android:layout_marginTop="15dp"
+        android:text="No members"
+        android:textColor="#cccccc"
+        android:textSize="16sp"
+        android:fontFamily="@font/gb_montserrat_regular"
+        android:visibility="gone"/>
+
 </RelativeLayout>

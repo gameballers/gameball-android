@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     private RecyclerView leaderboardRecyclerview;
     private ProgressBar loadingIndicator;
     private RelativeLayout noInternetLayout;
+    private ImageView leaderBoardEmptyIv;
+    private TextView leaderBoardEmptyTv;
 
     LeaderBoardAdapter leaderBoardAdapter;
     LeaderBoardContract.Presenter presenter;
@@ -69,6 +72,8 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
         leaderTitle = rootView.findViewById(R.id.gb_leaderboard_title);
         playerRank = rootView.findViewById(R.id.player_rank_value);
         noInternetLayout = rootView.findViewById(R.id.gb_no_internet_layout);
+        leaderBoardEmptyIv = rootView.findViewById(R.id.leaderboard_empty_state_iv);
+        leaderBoardEmptyTv = rootView.findViewById(R.id.leaderboard_empty_state_tv);
     }
 
     private void setupBotSettings()
@@ -87,8 +92,16 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     @Override
     public void fillLeaderBoard(ArrayList<PlayerAttributes> leaderBoard)
     {
-        leaderBoardAdapter.setmData(leaderBoard);
-        leaderBoardAdapter.notifyDataSetChanged();
+        if(leaderBoard.size() > 0) {
+            leaderBoardAdapter.setmData(leaderBoard);
+            leaderBoardAdapter.notifyDataSetChanged();
+
+            leaderBoardEmptyTv.setVisibility(View.GONE);
+            leaderBoardEmptyIv.setVisibility(View.GONE);
+        } else {
+            leaderBoardEmptyTv.setVisibility(View.VISIBLE);
+            leaderBoardEmptyIv.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

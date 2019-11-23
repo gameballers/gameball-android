@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,9 @@ public class NotificationFragment extends Fragment implements NotificationsContr
     private NotificationsHistoryAdapter adapter;
     private NotificationsContract.Presenter presenter;
     private ClientBotSettings clientBotSettings;
+
+    private ImageView notificationEmptyStateIv;
+    private TextView notificationEmptyStateTv;
 
 
     @Override
@@ -64,6 +68,8 @@ public class NotificationFragment extends Fragment implements NotificationsContr
         notificationsList = rootView.findViewById(R.id.gb_notification_list);
         loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
         noInternetLayout = rootView.findViewById(R.id.gb_no_internet_layout);
+        notificationEmptyStateTv = rootView.findViewById(R.id.notification_empty_state_tv);
+        notificationEmptyStateIv = rootView.findViewById(R.id.notification_empty_state_iv);
 
         notificationsList.setLayoutManager(new LinearLayoutManager(getContext()));
         notificationsList.setHasFixedSize(true);
@@ -78,8 +84,16 @@ public class NotificationFragment extends Fragment implements NotificationsContr
 
     @Override
     public void onNotificationsLoaded(ArrayList<Notification> notifications) {
-        adapter.setMdata(notifications);
-        adapter.notifyDataSetChanged();
+        if(notifications.size() > 0) {
+            adapter.setMdata(notifications);
+            adapter.notifyDataSetChanged();
+
+            notificationEmptyStateIv.setVisibility(View.GONE);
+            notificationEmptyStateTv.setVisibility(View.GONE);
+        } else {
+            notificationEmptyStateIv.setVisibility(View.VISIBLE);
+            notificationEmptyStateTv.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
