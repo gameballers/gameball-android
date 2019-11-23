@@ -6,13 +6,14 @@
 
     <TextView
         android:id="@+id/gb_notification_title"
-        style="@style/text_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="12dp"
-        android:text="Notifications" />
+        android:text="Notifications"
+        android:textSize="16sp"
+        android:fontFamily="@font/gb_montserrat_regular"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gb_notification_list"

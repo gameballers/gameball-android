@@ -61,6 +61,7 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.gb_fragment_profile, container, false);
+        initComponents();
         initView();
         setupBotSettings();
         prepView();
@@ -160,14 +161,11 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Override
     public void onStop()
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH)
-        {
+
             PowerManager pm = (PowerManager) (getContext()).getSystemService(Context.POWER_SERVICE);
-            if((pm.isInteractive()))
-            {
+            if((pm.isInteractive())) {
                 presenter.unsubscribe();
             }
-        }
         super.onStop();
     }
 }

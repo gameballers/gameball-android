@@ -21,9 +21,8 @@ public class GameBallMainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gb_activity_gameball_main);
-        ClientBotSettings botSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
 
-        DisplayUtils.statusBarColorToSolid(this,botSettings.getBotMainColor());
+        updateStatusBarColor();
 
         navigateToFragment(new MainContainerFragment());
 
@@ -44,6 +43,10 @@ public class GameBallMainActivity extends AppCompatActivity
 
             fragmentTransaction.commit();
         }
+    }
+
+    public void updateStatusBarColor(){
+        DisplayUtils.statusBarColorToSolid(this,SharedPreferencesUtils.getInstance().getClientBotSettings().getBotMainColor());
     }
 
     @Override

@@ -13,14 +13,14 @@
 
         <TextView
             android:id="@+id/gb_leaderboard_title"
-            style="@style/text_title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
             android:text="@string/leaderboard"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/gb_montserrat_regular"/>
 
         <TextView
             android:id="@+id/gb_rank_title"

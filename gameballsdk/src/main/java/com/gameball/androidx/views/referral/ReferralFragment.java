@@ -40,7 +40,6 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        initComponents();
     }
 
     @Nullable
@@ -48,6 +47,7 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         rootView = inflater.inflate(R.layout.gb_fragment_referral, container, false);
+        initComponents();
         initView();
         setupBotSettings();
         prepView();

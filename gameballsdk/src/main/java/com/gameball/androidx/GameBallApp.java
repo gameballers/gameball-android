@@ -3,7 +3,6 @@ package com.gameball.androidx;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
@@ -49,7 +48,8 @@ import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSourc
 import com.gameball.androidx.network.transactionRemote.TransactionRemoteDataSource;
 import com.gameball.androidx.utils.Constants;
 import com.gameball.androidx.views.GameBallMainActivity;
-import com.gameball.androidx.views.laregNotificationView.LargeNotificationActivity;
+import com.gameball.androidx.views.largeNotification.LargeNotificationActivity;
+import com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity;
 import com.gameball.androidx.views.mainContainer.MainContainerFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -275,7 +275,7 @@ public class GameBallApp {
 
     private void sendNotification(final NotificationBody messageBody) {
 
-        String channelId = mContext.getString(R.string.default_notification_channel_id);
+        final String channelId = mContext.getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(mContext, channelId)
@@ -288,9 +288,20 @@ public class GameBallApp {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+                Intent notificationIntent = new Intent(mContext, PopupNotificationActivity.class);;
 
-                Intent notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
-                notificationIntent.putExtra(Constants.NOTIFICATION_OBJ, messageBody);
+                switch (messageBody.getType()) {
+                    case NotificationBody.SMALL_TOAST:
+                        break;
+                    case NotificationBody.LARGE_TOAST:
+                        notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
+                        break;
+                    case NotificationBody.POPUP:
+                        notificationIntent = new Intent(mContext, PopupNotificationActivity.class);
+                        break;
+                }
+
+                notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
                 notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(notificationIntent);
             }
@@ -318,6 +329,7 @@ public class GameBallApp {
             notificationBody.setTitle(notificationData.get("title"));
             notificationBody.setBody(notificationData.get("body"));
             notificationBody.setIcon(notificationData.get("icon"));
+            notificationBody.setType(notificationData.get("type"));
 
             sendNotification(notificationBody);
             return true;

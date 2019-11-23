@@ -42,21 +42,24 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new LeaderBoardPresenter(getContext(),this);
-        leaderBoardAdapter = new LeaderBoardAdapter(getContext(), new ArrayList<PlayerAttributes>());
-        clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.gb_fragment_leader_board, container, false);
+        initComponents();
         initView();
         setupBotSettings();
         prepView();
         presenter.getLeaderBoard();
         return rootView;
+    }
+
+    private void initComponents() {
+        presenter = new LeaderBoardPresenter(getContext(),this);
+        leaderBoardAdapter = new LeaderBoardAdapter(getContext(), new ArrayList<PlayerAttributes>());
+        clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
     }
 
     private void initView() {

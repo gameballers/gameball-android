@@ -3,32 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/transparent"
+    android:clipToPadding="false"
+    android:elevation="10dp"
+    android:paddingTop="14dp"
+    android:paddingBottom="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="300dp"
+        android:layout_margin="35dp"
         android:paddingBottom="20dp"
         android:clickable="true"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:background="@drawable/gb_bg_white_st_grey_r8">
 
         <ImageButton
             android:id="@+id/gb_close_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:background="@null"
-            android:padding="25dp"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="12dp"
             android:src="@drawable/gb_ic_close"
             android:stateListAnimator="@null"
             />
 
         <ImageView
             android:id="@+id/gb_notification_icon"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="50dp"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"
             android:layout_marginEnd="8dp"
@@ -40,14 +53,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/gb_notification_icon"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="12dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:gravity="center"
             android:ellipsize="end"
             android:lines="1"
-            android:textSize="20sp"
-            android:fontFamily="@font/gb_montserrat_semi_bold"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             tools:text="title" />
 
@@ -62,7 +75,7 @@
             android:layout_marginEnd="20dp"
             android:maxLines="5"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:fontFamily="@font/gb_montserrat_light"
             android:ellipsize="end"
             tools:text="test test test test ttest test test test test test est test test "

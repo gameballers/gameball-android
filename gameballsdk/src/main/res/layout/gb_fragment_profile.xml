@@ -22,7 +22,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/achievements"
             android:textSize="16sp"
-            android:fontFamily="@font/gb_montserrat_regular" />
+            android:fontFamily="@font/gb_montserrat_regular"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gb_achievements_recyclerView"
@@ -48,7 +48,7 @@
             android:layout_marginTop="32dp"
             android:text="Missions"
             android:textSize="16sp"
-            android:fontFamily="@font/gb_montserrat_regular" />
+            android:fontFamily="@font/gb_montserrat_regular"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gb_missions_recyclerView"

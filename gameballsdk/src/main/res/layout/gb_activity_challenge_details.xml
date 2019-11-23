@@ -143,7 +143,7 @@
             android:layout_marginTop="25dp"
             android:text="@string/progress"
             android:textSize="16sp"
-            style="@style/text_title_style"
+            android:textStyle="bold"
             />
 
         <TextView
@@ -283,8 +283,8 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="25dp"
                 android:text="@string/status"
-                style="@style/text_title_style"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 />
 
             <ImageView

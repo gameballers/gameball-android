@@ -13,6 +13,7 @@ import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
 
+import com.gameball.androidx.views.GameBallMainActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
@@ -230,12 +231,14 @@ public class MainContainerFragment extends DialogFragment implements MainContain
                         tabs.getTabAt(1).setIcon(R.drawable.gb_ic_notification);
                     break;
                 case 2:
-                    if (clientBotSettings.isEnableLeaderboard())
+                    if (clientBotSettings.isReferralOn() && clientBotSettings.isEnableLeaderboard())
                         tabs.getTabAt(2).setIcon(R.drawable.gb_ic_leaderboard);
                     else if (clientBotSettings.isEnableNotifications())
                         tabs.getTabAt(2).setIcon(R.drawable.gb_ic_notification);
+                    break;
                 case 3:
                     tabs.getTabAt(3).setIcon(R.drawable.gb_ic_notification);
+                    break;
             }
         }
     }
@@ -259,6 +262,8 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     @Override
     public void updateBotSettings() {
         clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
+        ((GameBallMainActivity) getActivity()).updateStatusBarColor();
+        setupBotSettings();
     }
 
     private void fillPlayerData(PlayerAttributes playerAttributes, Level nextLevel) {
