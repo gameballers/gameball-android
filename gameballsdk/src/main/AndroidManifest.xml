@@ -5,8 +5,13 @@
     <application
         android:hardwareAccelerated="false"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.gameball.androidx.views.laregNotificationView.LargeNotificationActivity"
+        <activity android:name="com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity"
             android:theme="@style/Theme.Transparent"
+            />
+        <activity android:name="com.gameball.androidx.views.smallNotification.SmallNotificationActivity"
+            android:theme="@style/Theme.Transparent"
+            />
+        <activity android:name="com.gameball.androidx.views.largeNotification.LargeNotificationActivity"
             />
         <activity
             android:name="com.gameball.androidx.views.challengeDetails.ChallengeDetailsActivity"

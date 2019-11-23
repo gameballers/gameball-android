@@ -8,22 +8,22 @@
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="5dp">
     <ImageView
-        android:id="@+id/quest_logo"
+        android:id="@+id/gb_quest_logo"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/ic_diamond"
+        android:src="@drawable/gb_ic_diamond"
         android:layout_centerHorizontal="true"
         />
 
     <TextView
-        android:id="@+id/quest_name"
+        android:id="@+id/gb_quest_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        android:layout_below="@id/quest_logo"
+        android:layout_below="@id/gb_quest_logo"
         tools:text="Name" />
 
 

@@ -1,18 +1,19 @@
-package com.gameball.androidx.views.laregNotificationView;
+package com.gameball.androidx.views.smallNotification;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gameball.androidx.R;
 import com.gameball.androidx.model.response.NotificationBody;
 import com.gameball.androidx.utils.Constants;
 import com.squareup.picasso.Picasso;
 
-public class LargeNotificationActivity extends AppCompatActivity {
+public class SmallNotificationActivity extends AppCompatActivity {
 
     private TextView notificationTitle;
     private TextView notificationBody;
@@ -25,7 +26,7 @@ public class LargeNotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_large_notification);
+        setContentView(R.layout.gb_activity_small_notification);
         init();
 
         fillView();
@@ -34,19 +35,12 @@ public class LargeNotificationActivity extends AppCompatActivity {
     private void init()
     {
         if(getIntent() != null)
-            notificationBodyObj = (NotificationBody) getIntent().getExtras().getSerializable(Constants.NOTIFICATION_OBJ);
+            notificationBodyObj = (NotificationBody) getIntent().getExtras().getSerializable(Constants.NOTIFICATION_BODY);
 
-        notificationBody = findViewById(R.id.notification_body);
-        notificationIcon = findViewById(R.id.notification_icon);
-        notificationTitle = findViewById(R.id.notification_title);
-        closeBtn = findViewById(R.id.close_btn);
-
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        notificationBody = findViewById(R.id.gb_notification_body);
+        notificationIcon = findViewById(R.id.gb_notification_icon);
+        notificationTitle = findViewById(R.id.gb_notification_title);
+        closeBtn = findViewById(R.id.gb_close_btn);
     }
 
     private void fillView()

@@ -44,7 +44,7 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.referral_challenge_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_referral_challenge_item_layout, parent, false);
         return new ItemViewHolder(row);
     }
 
@@ -79,7 +79,7 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
             holder.challengeProgress.startAnimation(progressAnimation);
 
         if(item.getAchievedCount() >= 1)
-            holder.challengeCheck.setImageResource(R.drawable.ic_checkmark);
+            holder.challengeCheck.setImageResource(R.drawable.gb_ic_checkmark);
         else
             holder.challengeCheck.setImageTintList(ColorStateList.
                     valueOf(Color.parseColor("#f2f2f2")));
@@ -109,12 +109,12 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
         public ItemViewHolder(View itemView)
         {
             super(itemView);
-            challengeIcon = itemView.findViewById(R.id.challenge_icon);
-            challengeCheck = itemView.findViewById(R.id.challenge_check);
-            challengeAchievedCount = itemView.findViewById(R.id.challenge_achieved_count);
-            challengeName = itemView.findViewById(R.id.challenge_name);
-            challengeRewardTxt = itemView.findViewById(R.id.challenge_reward_txt);
-            challengeProgress = itemView.findViewById(R.id.challenge_event_progress);
+            challengeIcon = itemView.findViewById(R.id.gb_challenge_icon);
+            challengeCheck = itemView.findViewById(R.id.gb_challenge_check);
+            challengeAchievedCount = itemView.findViewById(R.id.gb_challenge_achieved_count);
+            challengeName = itemView.findViewById(R.id.gb_challenge_name);
+            challengeRewardTxt = itemView.findViewById(R.id.gb_challenge_reward_txt);
+            challengeProgress = itemView.findViewById(R.id.gb_challenge_event_progress);
 
             itemView.setOnClickListener(this);
         }

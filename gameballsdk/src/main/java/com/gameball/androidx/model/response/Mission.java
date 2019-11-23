@@ -76,8 +76,8 @@ public class Mission {
         return rewardPoints;
     }
 
-    public Integer getCompletionPercentage() {
-        return completionPercentage.intValue();
+    public Double getCompletionPercentage() {
+        return completionPercentage * 100;
     }
 
     public ArrayList<Game> getQuestChallenges() {

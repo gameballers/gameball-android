@@ -27,61 +27,26 @@ import com.squareup.picasso.Picasso;
  */
 public class DialogManager
 {
-    public static void showDialog(Context context, int msgStrId)
-    {
-        if (context != null)
-        {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle(R.string.app_name);
-            dialog.setMessage(msgStrId);
-            dialog.setPositiveButton(R.string.ok, null);
-            dialog.show();
-        }
-    }
-
-    public static void showDialog(Context context, String msg)
-    {
-        if (context != null)
-        {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle(R.string.app_name);
-            dialog.setMessage(msg);
-            dialog.setPositiveButton(R.string.ok, null);
-            dialog.show();
-        }
-    }
-
     public static void showCustomNotification(final Context context, NotificationBody notificationBody)
     {
         if (context != null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View toastLayout = inflater.inflate(R.layout.custom_toast_layout, null);
-            toastLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+            final View toastLayout = inflater.inflate(R.layout.gb_activity_small_notification, null);
+            toastLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
 
             final Toast toast = new Toast(context);
             toast.setDuration(Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP, 0, 10);
+            toast.setGravity(Gravity.TOP|Gravity.FILL_HORIZONTAL, 0, (int)DisplayUtils.convertDpToPixel(18));
             toast.setView(toastLayout);
 
-            TextView text = toastLayout.findViewById(R.id.textView);
-            TextView title = toastLayout.findViewById(R.id.notification_title);
-            ImageButton closeBtn = toastLayout.findViewById(R.id.close_btn);
-            ImageView icon = toastLayout.findViewById(R.id.imageView);
+            TextView text = toastLayout.findViewById(R.id.gb_notification_body);
+            TextView title = toastLayout.findViewById(R.id.gb_notification_title);
+            ImageView icon = toastLayout.findViewById(R.id.gb_notification_icon);
 
             text.setText(notificationBody.getBody());
             title.setText(notificationBody.getTitle());
-
-
-            closeBtn.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    toast.cancel();
-                }
-            });
 
             Picasso.get()
                     .load(notificationBody.getIcon())
@@ -101,47 +66,5 @@ public class DialogManager
                     });
 
         }
-    }
-
-    public static void showDialog(Context context, String msg, DialogInterface.OnClickListener listener)
-    {
-        if (context != null)
-        {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle(R.string.app_name);
-            dialog.setMessage(msg);
-            dialog.setCancelable(false);
-            dialog.setPositiveButton(R.string.ok, listener);
-            dialog.show();
-        }
-    }
-
-    public static void showSnackError(View v, int msgStrId)
-    {
-        Snackbar.make(v, msgStrId, Snackbar.LENGTH_LONG).show();
-    }
-
-    public static void showDialog(Context context, String msg, String positiveBtn, String negativeBtn,
-                                  boolean cancelable,
-                                  String title,
-                                  DialogInterface.OnClickListener positiveListener,
-                                  DialogInterface.OnClickListener negativeListener)
-    {
-        if (context != null)
-        {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle(title);
-            dialog.setMessage(msg);
-            dialog.setPositiveButton(positiveBtn, positiveListener);
-            dialog.setNegativeButton(negativeBtn, negativeListener);
-            dialog.setCancelable(cancelable);
-            dialog.show();
-        }
-    }
-
-    public static void showToast(Context context, String message)
-    {
-        if (context != null)
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

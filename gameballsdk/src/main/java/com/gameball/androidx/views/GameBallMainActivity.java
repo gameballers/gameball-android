@@ -20,10 +20,9 @@ public class GameBallMainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameball_main);
-        ClientBotSettings botSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
+        setContentView(R.layout.gb_activity_gameball_main);
 
-        DisplayUtils.statusBarColorToSolid(this,botSettings.getBotMainColor());
+        updateStatusBarColor();
 
         navigateToFragment(new MainContainerFragment());
 
@@ -40,10 +39,14 @@ public class GameBallMainActivity extends AppCompatActivity
             fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                     android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
 
-            fragmentTransaction.replace(R.id.main_activity_container, fragment, tag);
+            fragmentTransaction.replace(R.id.gb_main_activity_container, fragment, tag);
 
             fragmentTransaction.commit();
         }
+    }
+
+    public void updateStatusBarColor(){
+        DisplayUtils.statusBarColorToSolid(this,SharedPreferencesUtils.getInstance().getClientBotSettings().getBotMainColor());
     }
 
     @Override

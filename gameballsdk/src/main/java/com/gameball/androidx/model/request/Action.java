@@ -1,5 +1,7 @@
 package com.gameball.androidx.model.request;
 
+import android.se.omapi.Session;
+
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,12 +19,16 @@ public class Action
     @SerializedName("isPositive")
     @Expose
     private boolean isPositive;
+    @SerializedName("sessionInfo")
+    @Expose
+    private SessionInfo sessionInfo;
 
     public Action()
     {
         this.events = new HashMap<>();
         this.playerUniqueId = SharedPreferencesUtils.getInstance().getPlayerUniqueId();
         this.isPositive = true;
+        sessionInfo = new SessionInfo();
     }
 
     public void addEvent(String eventName, HashMap<String, Object> metaData)
@@ -33,5 +39,15 @@ public class Action
         }
 
         this.events.put(eventName, metaData);
+    }
+
+
+    private class SessionInfo {
+        @SerializedName("platform")
+        @Expose
+        private int platform;
+        protected SessionInfo() {
+            platform = 4;
+        }
     }
 }

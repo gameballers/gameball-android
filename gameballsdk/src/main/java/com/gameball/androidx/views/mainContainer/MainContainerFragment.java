@@ -2,7 +2,7 @@ package com.gameball.androidx.views.mainContainer;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -10,13 +10,18 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
+
 import androidx.annotation.Nullable;
+
+import com.gameball.androidx.views.GameBallMainActivity;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.core.content.ContextCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +62,9 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private View loadingIndicatorBg;
     private RelativeLayout noInternetConnectionLayout;
     private SwipeRefreshLayout pullToRefresh;
+    private TextView singlePoints;
+    private AppBarLayout appBarLayout;
+    private ConstraintLayout walletRankPointsContainer;
 
     private Animation fadeIn;
 
@@ -85,7 +93,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main_container, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_main_container, container, false);
         initView();
         setupBotSettings();
         presenter.getPlayerInfo();
@@ -126,22 +134,36 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     }*/
 
     private void initView() {
-        txtPlayerName = rootView.findViewById(R.id.txt_player_name);
-        btnClose = rootView.findViewById(R.id.btn_close);
-        tabs = rootView.findViewById(R.id.tabs);
-        viewPager = rootView.findViewById(R.id.view_pager);
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
-        levelLogo = rootView.findViewById(R.id.level_logo);
-        levelName = rootView.findViewById(R.id.level_name);
-        levelProgress = rootView.findViewById(R.id.level_progress);
-        nextLevelTitle = rootView.findViewById(R.id.next_level_title);
-        currentFrubiesValue = rootView.findViewById(R.id.current_frubies_value);
-        currentPointsValue = rootView.findViewById(R.id.current_points_value);
-        currentFrubiesTitle = rootView.findViewById(R.id.frubies_title);
-        currentPointTitle = rootView.findViewById(R.id.points_title);
-        loadingIndicatorBg = rootView.findViewById(R.id.loading_indicator_bg);
-        noInternetConnectionLayout = rootView.findViewById(R.id.no_internet_layout);
+        txtPlayerName = rootView.findViewById(R.id.gb_txt_player_name);
+        btnClose = rootView.findViewById(R.id.gb_btn_close);
+        tabs = rootView.findViewById(R.id.gb_tabs);
+        viewPager = rootView.findViewById(R.id.gb_view_pager);
+        loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
+        levelLogo = rootView.findViewById(R.id.gb_level_logo);
+        levelName = rootView.findViewById(R.id.gb_level_name);
+        levelProgress = rootView.findViewById(R.id.gb_level_progress);
+        nextLevelTitle = rootView.findViewById(R.id.gb_next_level_title);
+        currentFrubiesValue = rootView.findViewById(R.id.gb_rank_points_value);
+        currentPointsValue = rootView.findViewById(R.id.gb_wallet_points_value);
+        currentFrubiesTitle = rootView.findViewById(R.id.gb_ranke_name);
+        currentPointTitle = rootView.findViewById(R.id.gb_wallet_points_name);
+        loadingIndicatorBg = rootView.findViewById(R.id.gb_loading_indicator_bg);
+        noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
+        singlePoints = rootView.findViewById(R.id.gb_single_points);
+        walletRankPointsContainer = rootView.findViewById(R.id.gb_rank_and_wallet_container);
+        appBarLayout = rootView.findViewById(R.id.gb_appbar_layout);
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset >= 0) {
+                    pullToRefresh.setEnabled(true);
+                } else {
+                    pullToRefresh.setEnabled(false);
+                }
+            }
+        });
     }
 
     private void setupBotSettings() {
@@ -154,6 +176,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         currentFrubiesTitle.setText(clientBotSettings.getRankPointsName());
         currentPointTitle.setText(clientBotSettings.getWalletPointsName());
         pullToRefresh.setColorSchemeColors(Color.parseColor(clientBotSettings.getBotMainColor()));
+        singlePoints.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(clientBotSettings.getBotMainColor())));
     }
 
     private void prepView() {
@@ -197,23 +220,25 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         for (int i = 0; i < tabs.getTabCount(); i++) {
             switch (i) {
                 case 0:
-                    tabs.getTabAt(0).setIcon(R.drawable.ic_trophy);
+                    tabs.getTabAt(0).setIcon(R.drawable.gb_ic_trophy);
                     break;
                 case 1:
                     if (clientBotSettings.isReferralOn())
-                        tabs.getTabAt(1).setIcon(R.drawable.ic_referral);
+                        tabs.getTabAt(1).setIcon(R.drawable.gb_ic_referral);
                     else if (clientBotSettings.isEnableLeaderboard())
-                        tabs.getTabAt(1).setIcon(R.drawable.ic_leaderboard);
+                        tabs.getTabAt(1).setIcon(R.drawable.gb_ic_leaderboard);
                     else if (clientBotSettings.isEnableNotifications())
-                        tabs.getTabAt(1).setIcon(R.drawable.ic_notification);
+                        tabs.getTabAt(1).setIcon(R.drawable.gb_ic_notification);
                     break;
                 case 2:
-                    if (clientBotSettings.isEnableLeaderboard())
-                        tabs.getTabAt(2).setIcon(R.drawable.ic_leaderboard);
+                    if (clientBotSettings.isReferralOn() && clientBotSettings.isEnableLeaderboard())
+                        tabs.getTabAt(2).setIcon(R.drawable.gb_ic_leaderboard);
                     else if (clientBotSettings.isEnableNotifications())
-                        tabs.getTabAt(2).setIcon(R.drawable.ic_notification);
+                        tabs.getTabAt(2).setIcon(R.drawable.gb_ic_notification);
+                    break;
                 case 3:
-                    tabs.getTabAt(3).setIcon(R.drawable.ic_notification);
+                    tabs.getTabAt(3).setIcon(R.drawable.gb_ic_notification);
+                    break;
             }
         }
     }
@@ -234,16 +259,42 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         noInternetConnectionLayout.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void updateBotSettings() {
+        clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
+        ((GameBallMainActivity) getActivity()).updateStatusBarColor();
+        setupBotSettings();
+    }
+
     private void fillPlayerData(PlayerAttributes playerAttributes, Level nextLevel) {
         levelName.setText(playerAttributes.getLevel().getName());
         if (playerAttributes.getLevel().getIcon() != null)
             ImageDownloader.downloadImage(getContext(), levelLogo,
                     playerAttributes.getLevel().getIcon().getFileName());
 
-        currentPointsValue.setText(String.format(Locale.getDefault(),
-                "%d", playerAttributes.getAccPoints()));
-        currentFrubiesValue.setText(String.format(Locale.getDefault(),
-                "%d", playerAttributes.getAccFrubies()));
+        if (clientBotSettings.isWalletPointsVisible() && clientBotSettings.isRankPointsVisible()) {
+
+            walletRankPointsContainer.setVisibility(View.VISIBLE);
+            singlePoints.setVisibility(View.GONE);
+            currentPointsValue.setText(String.format(Locale.getDefault(),
+                    "%d", playerAttributes.getAccPoints()));
+            currentFrubiesValue.setText(String.format(Locale.getDefault(),
+                    "%d", playerAttributes.getAccFrubies()));
+        } else {
+            walletRankPointsContainer.setVisibility(View.GONE);
+
+            if (clientBotSettings.isWalletPointsVisible()) {
+                singlePoints.setVisibility(View.VISIBLE);
+                singlePoints.setText(String.format(Locale.getDefault(),"%d",playerAttributes.getAccPoints()));
+                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.gb_ic_points, 0,0,0);
+            } else if (clientBotSettings.isRankPointsVisible()) {
+                singlePoints.setVisibility(View.VISIBLE);
+                singlePoints.setText(String.format(Locale.getDefault(), "%d",playerAttributes.getAccFrubies()));
+                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.gb_ic_diamon_outline, 0,0,0);
+            } else {
+                singlePoints.setVisibility(View.GONE);
+            }
+        }
 
         if (nextLevel != null) {
             nextLevelTitle.setText(String.format(Locale.getDefault(),
@@ -278,6 +329,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
 
     @Override
     public void showLoadingIndicator() {
+        noInternetConnectionLayout.setVisibility(View.GONE);
         loadingIndicatorBg.setVisibility(View.VISIBLE);
         loadingIndicator.setVisibility(View.VISIBLE);
     }

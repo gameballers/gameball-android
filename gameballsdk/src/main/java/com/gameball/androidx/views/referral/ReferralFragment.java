@@ -40,14 +40,14 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        initComponents();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        rootView = inflater.inflate(R.layout.fragment_referral, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_referral, container, false);
+        initComponents();
         initView();
         setupBotSettings();
         prepView();
@@ -73,11 +73,11 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
 
     private void initView()
     {
-        shareLinkBtn = rootView.findViewById(R.id.share_link_btn);
-        referralLink = rootView.findViewById(R.id.referral_link);
-        referralHeadline = rootView.findViewById(R.id.referral_headline);
-        referralText = rootView.findViewById(R.id.referral_text);
-        referralChallengeLs = rootView.findViewById(R.id.referral_challenge_ls);
+        shareLinkBtn = rootView.findViewById(R.id.gb_share_link_btn);
+        referralLink = rootView.findViewById(R.id.gb_referral_link);
+        referralHeadline = rootView.findViewById(R.id.gb_referral_headline);
+        referralText = rootView.findViewById(R.id.gb_referral_text);
+        referralChallengeLs = rootView.findViewById(R.id.gb_referral_challenge_ls);
 
         referralChallengeLs.setLayoutManager(new LinearLayoutManager(getContext()));
         referralChallengeLs.setNestedScrollingEnabled(true);
@@ -86,8 +86,8 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
 
         if(DisplayUtils.isRTL(Locale.getDefault()))
         {
-            shareLinkBtn.setBackgroundResource(R.drawable.bg_primary_left_corener_round);
-            referralLink.setBackgroundResource(R.drawable.bg_grey_right_corener_round);
+            shareLinkBtn.setBackgroundResource(R.drawable.gb_bg_primary_left_corener_round);
+            referralLink.setBackgroundResource(R.drawable.gb_bg_grey_right_corener_round);
         }
 
         shareLinkBtn.setOnClickListener(this);

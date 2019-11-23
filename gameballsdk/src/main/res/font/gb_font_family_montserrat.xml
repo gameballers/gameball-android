@@ -2,12 +2,12 @@
 <font-family
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
-        app:font="@font/montserrat_regular"
+        app:font="@font/gb_montserrat_regular"
         app:fontStyle="normal"
         app:fontWeight="400" />
 
     <font
-        app:font="@font/montserrat_bold"
+        app:font="@font/gb_montserrat_bold"
         app:fontStyle="normal"
         app:fontWeight="700" />
 </font-family>

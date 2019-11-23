@@ -28,8 +28,9 @@ public class TabsAdapter extends FragmentPagerAdapter {
                     return new ReferralFragment();
                 else if (clientBotSettings.isEnableLeaderboard())
                     return new LeaderBoardFragment();
+                else return new NotificationFragment();
             case 2:
-                if (clientBotSettings.isEnableLeaderboard())
+                if (clientBotSettings.isReferralOn() && clientBotSettings.isEnableLeaderboard())
                     return new LeaderBoardFragment();
                 else
                     return new NotificationFragment();

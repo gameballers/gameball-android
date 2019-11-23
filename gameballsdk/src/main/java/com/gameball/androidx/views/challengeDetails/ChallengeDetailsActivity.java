@@ -86,7 +86,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge_details);
+        setContentView(R.layout.gb_activity_challenge_details);
         initComponents();
         initView();
         prepView();
@@ -111,28 +111,28 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
     private void initView()
     {
-        challengeIcon = findViewById(R.id.challenge_icon);
-        notAchievedIndicator = findViewById(R.id.not_achieved_indicator);
-        statusTitle = findViewById(R.id.status_title);
-        lockedChallengeIndicator = findViewById(R.id.locked_challenge_indicator);
-        challengeName = findViewById(R.id.challenge_name);
-        challengeDescription = findViewById(R.id.challenge_description);
-        challengeTargetEventCount = findViewById(R.id.challenge_target_event_count);
-        challengeRewardTxt = findViewById(R.id.challenge_reward_txt);
-        statusIcon = findViewById(R.id.status_icon);
-        status = findViewById(R.id.status_description);
-        statusDescription = findViewById(R.id.achieved_count);
-        backBtn = findViewById(R.id.back_btn);
-        challengeEventDescription = findViewById(R.id.challenge_event_description);
-        challengeLayout = findViewById(R.id.challenge_layout);
-        progressTitle = findViewById(R.id.progress_title);
-        challengeEventProgress = findViewById(R.id.challenge_event_progress);
+        challengeIcon = findViewById(R.id.gb_challenge_icon);
+        notAchievedIndicator = findViewById(R.id.gb_not_achieved_indicator);
+        statusTitle = findViewById(R.id.gb_status_title);
+        lockedChallengeIndicator = findViewById(R.id.gb_locked_challenge_indicator);
+        challengeName = findViewById(R.id.gb_challenge_name);
+        challengeDescription = findViewById(R.id.gb_challenge_description);
+        challengeTargetEventCount = findViewById(R.id.gb_challenge_target_event_count);
+        challengeRewardTxt = findViewById(R.id.gb_challenge_reward_txt);
+        statusIcon = findViewById(R.id.gb_status_icon);
+        status = findViewById(R.id.gb_status_description);
+        statusDescription = findViewById(R.id.gb_achieved_count);
+        backBtn = findViewById(R.id.gb_back_btn);
+        challengeEventDescription = findViewById(R.id.gb_challenge_event_description);
+        challengeLayout = findViewById(R.id.gb_challenge_layout);
+        progressTitle = findViewById(R.id.gb_progress_title);
+        challengeEventProgress = findViewById(R.id.gb_challenge_event_progress);
         challengeEventProgress.setProgress(1);
-        highScoreLayout = findViewById(R.id.high_score_layout);
-        highScoreTitle = findViewById(R.id.high_score_title);
-        highScoreValue = findViewById(R.id.high_score_value);
-        statusLayout = findViewById(R.id.status_layout);
-        isRepeatableHighScoreText = findViewById(R.id.is_repeatable_high_score_txt);
+        highScoreLayout = findViewById(R.id.gb_high_score_layout);
+        highScoreTitle = findViewById(R.id.gb_high_score_title);
+        highScoreValue = findViewById(R.id.gb_high_score_value);
+        statusLayout = findViewById(R.id.gb_status_layout);
+        isRepeatableHighScoreText = findViewById(R.id.gb_is_repeatable_high_score_txt);
     }
 
 
@@ -199,7 +199,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     {
         lockedChallengeIndicator.setVisibility(View.VISIBLE);
         notAchievedIndicator.setVisibility(View.VISIBLE);
-        statusIcon.setImageResource(R.drawable.ic_status_locked);
+        statusIcon.setImageResource(R.drawable.gb_ic_status_locked);
 
         String statusPrefix = String.format(Locale.getDefault(),"%s %s %s",
                 getString(R.string.reach_level), game.getLevelName(),
@@ -208,16 +208,13 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
         status.setText(getResources().getString(R.string.locked));
         statusDescription.setText(statusPrefix);
 
-        String challengeRewardStr = String.format(Locale.getDefault(),
-                "%d %s | %d %s", game.getRewardFrubies(), clientBotSettings.getRankPointsName(),
-                game.getRewardPoints(), clientBotSettings.getWalletPointsName());
-        challengeRewardTxt.setText(challengeRewardStr);
+        challengeRewardTxt.setText(getGameRewardText());
     }
 
     private void setupAchievedStatus()
     {
         notAchievedIndicator.setVisibility(View.GONE);
-        statusIcon.setImageResource(R.drawable.ic_status_achieved);
+        statusIcon.setImageResource(R.drawable.gb_ic_status_achieved);
         status.setText(String.format(Locale.getDefault(),
                 "%s", getString(R.string.achieved)));
         statusDescription.setText(String.format(Locale.getDefault(), "%d time(s)",game.getAchievedCount()));
@@ -226,7 +223,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     private void setupNotAchievedStatus()
     {
         notAchievedIndicator.setVisibility(View.VISIBLE);
-        statusIcon.setImageResource(R.drawable.ic_status_keep_going);
+        statusIcon.setImageResource(R.drawable.gb_ic_status_keep_going);
         status.setText(R.string.keep_going);
 //        if(game.getBehaviorTypeId() == HIGH_SCORE_BASED)
 //            statusDescription.setText(String.format("$s $d $s",
@@ -236,10 +233,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
     private void setupViewsByBehaviourTypeId()
     {
-        String challengeRewardStr = String.format(Locale.getDefault(),
-                "%d %s | %d %s", game.getRewardFrubies(), clientBotSettings.getRankPointsName(),
-                game.getRewardPoints(), clientBotSettings.getWalletPointsName());
-        challengeRewardTxt.setText(challengeRewardStr);
+        challengeRewardTxt.setText(getGameRewardText());
         challengeRewardTxt.startAnimation(fadeIn);
 
         if (game.getBehaviorTypeId() == HIGH_SCORE_BASED)
@@ -265,6 +259,34 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
             progressTitle.startAnimation(fadeIn);
         }
+    }
+
+    private String getGameRewardText() {
+
+        String result = "";
+
+        if (game.getRewardPoints() > 0 && game.getRewardFrubies() > 0) {
+            result = getString(
+                            R.string.reward_text,
+                            game.getRewardFrubies(),
+                            clientBotSettings.getRankPointsName(),
+                            game.getRewardPoints(),
+                            clientBotSettings.getWalletPointsName()
+                    );
+
+        } else if (game.getRewardPoints() > 0) {
+            result = String.format(Locale.getDefault(),
+                    "%d %s",
+                    game.getRewardPoints(),
+                    clientBotSettings.getWalletPointsName());
+        } else if(game.getRewardFrubies() > 0) {
+            result = String.format(Locale.getDefault(),
+                    "%d %s",
+                    game.getRewardFrubies(),
+                    clientBotSettings.getRankPointsName());
+        }
+
+        return result;
     }
 
     private boolean isHideProgressLayout()
@@ -344,7 +366,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v)
     {
-        if (v.getId() == R.id.back_btn)
+        if (v.getId() == R.id.gb_back_btn)
         {
             onBackPressed();
         }

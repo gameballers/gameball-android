@@ -47,7 +47,7 @@ public class ChallengesAdapter extends RecyclerView.Adapter<ChallengesAdapter.It
     @Override
     public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.acheivments_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_acheivments_item_layout, parent, false);
         ItemRowHolder rh = new ItemRowHolder(row);
         rh.setIsRecyclable(false);
         return rh;
@@ -126,12 +126,12 @@ public class ChallengesAdapter extends RecyclerView.Adapter<ChallengesAdapter.It
         public ItemRowHolder(View itemView) {
             super(itemView);
             this.itemview = itemView;
-            achievementsLogo = itemView.findViewById(R.id.challenge_icon);
-            achievementName = itemView.findViewById(R.id.challenge_name);
-            challengeRewardPts = itemView.findViewById(R.id.challenge_reward_points);
-            notAchievedIndicator = itemView.findViewById(R.id.not_achieved_indicator);
-            lockedAchievementIndicator = itemView.findViewById(R.id.locked_achievement_indicator);
-            achievedCount = itemView.findViewById(R.id.achieved_count);
+            achievementsLogo = itemView.findViewById(R.id.gb_challenge_icon);
+            achievementName = itemView.findViewById(R.id.gb_challenge_name);
+            challengeRewardPts = itemView.findViewById(R.id.gb_challenge_reward_points);
+            notAchievedIndicator = itemView.findViewById(R.id.gb_not_achieved_indicator);
+            lockedAchievementIndicator = itemView.findViewById(R.id.gb_locked_achievement_indicator);
+            achievedCount = itemView.findViewById(R.id.gb_achieved_count);
 
             itemView.setOnClickListener(this);
         }

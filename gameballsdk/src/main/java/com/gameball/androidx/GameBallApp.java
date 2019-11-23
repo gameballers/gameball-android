@@ -3,7 +3,6 @@ package com.gameball.androidx;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
@@ -48,15 +47,17 @@ import com.gameball.androidx.network.api.GameBallApi;
 import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSource;
 import com.gameball.androidx.network.transactionRemote.TransactionRemoteDataSource;
 import com.gameball.androidx.utils.Constants;
+import com.gameball.androidx.utils.DialogManager;
 import com.gameball.androidx.views.GameBallMainActivity;
-import com.gameball.androidx.views.laregNotificationView.LargeNotificationActivity;
+import com.gameball.androidx.views.largeNotification.LargeNotificationActivity;
+import com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity;
 import com.gameball.androidx.views.mainContainer.MainContainerFragment;
+import com.gameball.androidx.views.smallNotification.SmallNotificationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -275,12 +276,8 @@ public class GameBallApp {
     }
 
     private void sendNotification(final NotificationBody messageBody) {
-        Intent intent = new Intent(MAIN_ACTIVITY_ACTION);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
 
-        String channelId = mContext.getString(R.string.default_notification_channel_id);
+        final String channelId = mContext.getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(mContext, channelId)
@@ -289,19 +286,32 @@ public class GameBallApp {
                         .setAutoCancel(true)
                         .setSmallIcon(mNotificationIcon)
                         .setSound(defaultSoundUri);
-//                        .setContentIntent(pendingIntent);
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+                Intent notificationIntent;
 
-//                DialogManager.showCustomNotification(mContext, messageBody);
-//                Toast.makeText(mContext, messageBody, Toast.LENGTH_SHORT).show();
+                switch (messageBody.getType()) {
+                    case NotificationBody.SMALL_TOAST:
+//                        notificationIntent = new Intent(mContext, SmallNotificationActivity.class);
+                        DialogManager.showCustomNotification(mContext,messageBody);
+                        break;
+                    case NotificationBody.LARGE_TOAST:
+                        notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
+                        notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(notificationIntent);
+                        break;
+                    case NotificationBody.POPUP:
+                    default:
+                        notificationIntent = new Intent(mContext, PopupNotificationActivity.class);
+                        notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(notificationIntent);
+                        break;
 
-                Intent notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
-                notificationIntent.putExtra(Constants.NOTIFICATION_OBJ, messageBody);
-                notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(notificationIntent);
+                }
             }
         }, 100);
 
@@ -327,6 +337,7 @@ public class GameBallApp {
             notificationBody.setTitle(notificationData.get("title"));
             notificationBody.setBody(notificationData.get("body"));
             notificationBody.setIcon(notificationData.get("icon"));
+            notificationBody.setType(notificationData.get("type"));
 
             sendNotification(notificationBody);
             return true;
@@ -671,7 +682,7 @@ public class GameBallApp {
     public void showNotification() {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        View layout = inflater.inflate(R.layout.gb_custom_toast_layout, null);
 
         Toast toast = new Toast(mContext);
 

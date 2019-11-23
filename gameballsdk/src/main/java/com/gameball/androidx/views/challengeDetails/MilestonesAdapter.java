@@ -46,7 +46,7 @@ public class MilestonesAdapter extends RecyclerView.Adapter<MilestonesAdapter.It
     public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.milestone_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_milestone_item_layout, parent, false);
         return new ItemRowHolder(row);
     }
 
@@ -76,7 +76,7 @@ public class MilestonesAdapter extends RecyclerView.Adapter<MilestonesAdapter.It
         }
 
         if(isMilestoneComplete(item))
-            holder.milestoneIcon.setImageResource(R.drawable.ic_complete);
+            holder.milestoneIcon.setImageResource(R.drawable.gb_ic_complete);
 
         setUpBotSettings(holder);
     }
@@ -220,13 +220,13 @@ public class MilestonesAdapter extends RecyclerView.Adapter<MilestonesAdapter.It
         public ItemRowHolder(View itemView)
         {
             super(itemView);
-            milestoneIcon = itemView.findViewById(R.id.milestone_icon);
-            milestoneDescription = itemView.findViewById(R.id.milestone_description);
-            mileStoneRewardText = itemView.findViewById(R.id.mileStone_reward_text);
-            milestoneActionProgress = itemView.findViewById(R.id.milestone_action_progress);
-            milestoneAmountProgress = itemView.findViewById(R.id.milestone_amount_progress);
-            targetAmountCount = itemView.findViewById(R.id.milestone_target_amount_count);
-            targetActionCount = itemView.findViewById(R.id.milestone_target_action_count);
+            milestoneIcon = itemView.findViewById(R.id.gb_milestone_icon);
+            milestoneDescription = itemView.findViewById(R.id.gb_milestone_description);
+            mileStoneRewardText = itemView.findViewById(R.id.gb_mileStone_reward_text);
+            milestoneActionProgress = itemView.findViewById(R.id.gb_milestone_action_progress);
+            milestoneAmountProgress = itemView.findViewById(R.id.gb_milestone_amount_progress);
+            targetAmountCount = itemView.findViewById(R.id.gb_milestone_target_amount_count);
+            targetActionCount = itemView.findViewById(R.id.gb_milestone_target_action_count);
 
             itemView.setOnClickListener(this);
         }

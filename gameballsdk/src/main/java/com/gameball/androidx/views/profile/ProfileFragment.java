@@ -60,7 +60,8 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_profile, container, false);
+        initComponents();
         initView();
         setupBotSettings();
         prepView();
@@ -81,13 +82,13 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     }
 
     private void initView() {
-        achievementTitle = rootView.findViewById(R.id.achievements_title);
-        achievementsRecyclerView = rootView.findViewById(R.id.achievements_recyclerView);
-        profileLoadingIndicator = rootView.findViewById(R.id.profile_data_loading_indicator);
-        profileLoadingIndicatorBg = rootView.findViewById(R.id.profile_data_loading_indicator_bg);
-        noInternetConnectionLayout = rootView.findViewById(R.id.no_internet_layout);
-        missionsTitle = rootView.findViewById(R.id.missions_title);
-        missionRecyclerView = rootView.findViewById(R.id.missions_recyclerView);
+        achievementTitle = rootView.findViewById(R.id.gb_achievements_title);
+        achievementsRecyclerView = rootView.findViewById(R.id.gb_achievements_recyclerView);
+        profileLoadingIndicator = rootView.findViewById(R.id.gb_profile_data_loading_indicator);
+        profileLoadingIndicatorBg = rootView.findViewById(R.id.gb_profile_data_loading_indicator_bg);
+        noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
+        missionsTitle = rootView.findViewById(R.id.gb_missions_title);
+        missionRecyclerView = rootView.findViewById(R.id.gb_missions_recyclerView);
 
     }
 
@@ -113,8 +114,14 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Override
     public void onWithUnlocksLoaded(ArrayList<Game> games, ArrayList<Mission> missions)
     {
-        challengesAdapter.setmData(games);
-        challengesAdapter.notifyDataSetChanged();
+        if(games != null && games.size() > 0) {
+            challengesAdapter.setmData(games);
+            challengesAdapter.notifyDataSetChanged();
+        } else {
+            achievementTitle.setVisibility(View.GONE);
+            achievementsRecyclerView.setVisibility(View.GONE);
+
+        }
 
         if (missions != null && !missions.isEmpty()) {
             missionsTitle.setVisibility(View.VISIBLE);
@@ -154,14 +161,11 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
     @Override
     public void onStop()
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH)
-        {
+
             PowerManager pm = (PowerManager) (getContext()).getSystemService(Context.POWER_SERVICE);
-            if((pm.isInteractive()))
-            {
+            if((pm.isInteractive())) {
                 presenter.unsubscribe();
             }
-        }
         super.onStop();
     }
 }

@@ -8,12 +8,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/footer"
-        android:id="@+id/main_activity_container"
+        android:layout_above="@id/gb_footer"
+        android:id="@+id/gb_main_activity_container"
         />
 
     <RelativeLayout
-        android:id="@+id/footer"
+        android:id="@+id/gb_footer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
@@ -21,18 +21,18 @@
         >
 
         <ImageView
-            android:id="@+id/gameball_icon"
+            android:id="@+id/gb_gameball_icon"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_gameball"
+            android:src="@drawable/gb_ic_gameball"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/gameball_icon"
+            android:layout_toStartOf="@id/gb_gameball_icon"
             android:text="we run on"
             android:textSize="10sp"
             android:layout_marginEnd="5dp"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/gameball_icon"
+            android:layout_toEndOf="@id/gb_gameball_icon"
             android:layout_marginStart="5dp"
             android:text="Gameball"
             android:textColor="#808080"

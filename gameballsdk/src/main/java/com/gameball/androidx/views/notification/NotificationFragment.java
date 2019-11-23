@@ -39,27 +39,31 @@ public class NotificationFragment extends Fragment implements NotificationsContr
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new NotificationsHistoryAdapter(getContext(), new ArrayList<Notification>());
-        presenter = new NotificationsPresenter(this);
-        clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_notification, container, false);
+        rootView = inflater.inflate(R.layout.gb_fragment_notification, container, false);
+        initComponents();
         initView();
         setupBotSettings();
         presenter.getNotificationHistory();
         return rootView;
     }
 
+    private void initComponents() {
+        adapter = new NotificationsHistoryAdapter(getContext(), new ArrayList<Notification>());
+        presenter = new NotificationsPresenter(this);
+        clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
+    }
+
     private void initView()
     {
-        notificationsTitle = rootView.findViewById(R.id.notification_title);
-        notificationsList = rootView.findViewById(R.id.notification_list);
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
-        noInternetLayout = rootView.findViewById(R.id.no_internet_layout);
+        notificationsTitle = rootView.findViewById(R.id.gb_notification_title);
+        notificationsList = rootView.findViewById(R.id.gb_notification_list);
+        loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
+        noInternetLayout = rootView.findViewById(R.id.gb_no_internet_layout);
 
         notificationsList.setLayoutManager(new LinearLayoutManager(getContext()));
         notificationsList.setHasFixedSize(true);

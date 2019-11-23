@@ -43,7 +43,7 @@ public class NotificationsHistoryAdapter extends RecyclerView.Adapter<Notificati
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.notification_history_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_notification_history_item_layout, parent, false);
         ItemRowHolder rowHolder = new ItemRowHolder(row);
         rowHolder.setIsRecyclable(false);
         return rowHolder;
@@ -87,10 +87,10 @@ public class NotificationsHistoryAdapter extends RecyclerView.Adapter<Notificati
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
 
-            icon = itemView.findViewById(R.id.notification_icon);
-            title = itemView.findViewById(R.id.notification_title);
-            body = itemView.findViewById(R.id.notification_body);
-            date = itemView.findViewById(R.id.notification_date);
+            icon = itemView.findViewById(R.id.gb_notification_icon);
+            title = itemView.findViewById(R.id.gb_notification_title);
+            body = itemView.findViewById(R.id.gb_notification_body);
+            date = itemView.findViewById(R.id.gb_notification_date);
         }
     }
 }

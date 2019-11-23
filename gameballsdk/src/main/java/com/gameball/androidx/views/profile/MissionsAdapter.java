@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.gameball.androidx.utils.ImageDownloader;
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRowHolder> {
     private Context context;
@@ -39,7 +42,7 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.mission_item_layout, parent, false);
+        View row = inflater.inflate(R.layout.gb_mission_item_layout, parent, false);
         ItemRowHolder rh = new ItemRowHolder(row);
         return rh;
     }
@@ -50,15 +53,27 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
 
         ImageDownloader.downloadImage(context, holder.missionIcon, item.getIcon());
         holder.missionName.setText(item.getQuestName());
-        holder.missionReward.setText(
-                context.getString(
-                        R.string.reward_text,
-                        item.getRewardFrubies(),
-                        clientBotSettings.getRankPointsName(),
-                        item.getRewardPoints(),
-                        clientBotSettings.getWalletPointsName()
-                )
-        );
+        if (item.getRewardPoints() > 0 && item.getRewardFrubies() > 0) {
+            holder.missionReward.setText(
+                    context.getString(
+                            R.string.reward_text,
+                            item.getRewardFrubies(),
+                            clientBotSettings.getRankPointsName(),
+                            item.getRewardPoints(),
+                            clientBotSettings.getWalletPointsName()
+                    )
+            );
+        } else if (item.getRewardPoints() > 0) {
+            holder.missionReward.setText(String.format(Locale.getDefault(),
+                    "%d %s",
+                    item.getRewardPoints(),
+                    clientBotSettings.getWalletPointsName()));
+        } else if(item.getRewardFrubies() > 0) {
+            holder.missionReward.setText(String.format(Locale.getDefault(),
+                    "%d %s",
+                    item.getRewardFrubies(),
+                    clientBotSettings.getRankPointsName()));
+        }
 
         holder.challengesCount.setText(
                 context.getString(R.string.count_challenges,
@@ -73,7 +88,7 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
             if (item.getCompletionPercentage() != null)
                 holder.missionCompletionPercentage.setText(
                         context.getString(R.string.percentage,
-                                item.getCompletionPercentage())
+                                item.getCompletionPercentage().intValue())
                 );
         } else {
             holder.greenCheckIcon.setVisibility(View.VISIBLE);
@@ -114,15 +129,15 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.ItemRo
             super(itemView);
 
             this.itemView = itemView;
-            missionIcon = itemView.findViewById(R.id.mission_icon);
-            missionCompletionPercentage = itemView.findViewById(R.id.mission_completion_percentage);
-            greenCheckIcon = itemView.findViewById(R.id.green_check_icon);
-            missionName = itemView.findViewById(R.id.mission_name);
-            missionReward = itemView.findViewById(R.id.mission_reward);
-            challengesCount = itemView.findViewById(R.id.challenges_count);
-            missionChallengesExpandableLayout = itemView.findViewById(R.id.missions_expandable_layout);
-            missionChallengesRecyclerView = itemView.findViewById(R.id.mission_challenges_recyclerView);
-            missionProgress = itemView.findViewById(R.id.mission_progress);
+            missionIcon = itemView.findViewById(R.id.gb_mission_icon);
+            missionCompletionPercentage = itemView.findViewById(R.id.gb_mission_completion_percentage);
+            greenCheckIcon = itemView.findViewById(R.id.gb_green_check_icon);
+            missionName = itemView.findViewById(R.id.gb_mission_name);
+            missionReward = itemView.findViewById(R.id.gb_mission_reward);
+            challengesCount = itemView.findViewById(R.id.gb_challenges_count);
+            missionChallengesExpandableLayout = itemView.findViewById(R.id.gb_missions_expandable_layout);
+            missionChallengesRecyclerView = itemView.findViewById(R.id.gb_mission_challenges_recyclerView);
+            missionProgress = itemView.findViewById(R.id.gb_mission_progress);
 
             itemView.setOnClickListener(this);
 
