@@ -47,10 +47,12 @@ import com.gameball.androidx.network.api.GameBallApi;
 import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSource;
 import com.gameball.androidx.network.transactionRemote.TransactionRemoteDataSource;
 import com.gameball.androidx.utils.Constants;
+import com.gameball.androidx.utils.DialogManager;
 import com.gameball.androidx.views.GameBallMainActivity;
 import com.gameball.androidx.views.largeNotification.LargeNotificationActivity;
 import com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity;
 import com.gameball.androidx.views.mainContainer.MainContainerFragment;
+import com.gameball.androidx.views.smallNotification.SmallNotificationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -288,22 +290,28 @@ public class GameBallApp {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent notificationIntent = new Intent(mContext, PopupNotificationActivity.class);;
+                Intent notificationIntent;
 
                 switch (messageBody.getType()) {
                     case NotificationBody.SMALL_TOAST:
+//                        notificationIntent = new Intent(mContext, SmallNotificationActivity.class);
+                        DialogManager.showCustomNotification(mContext,messageBody);
                         break;
                     case NotificationBody.LARGE_TOAST:
                         notificationIntent = new Intent(mContext, LargeNotificationActivity.class);
+                        notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(notificationIntent);
                         break;
                     case NotificationBody.POPUP:
+                    default:
                         notificationIntent = new Intent(mContext, PopupNotificationActivity.class);
+                        notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
+                        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(notificationIntent);
                         break;
-                }
 
-                notificationIntent.putExtra(Constants.NOTIFICATION_BODY, messageBody);
-                notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(notificationIntent);
+                }
             }
         }, 100);
 
