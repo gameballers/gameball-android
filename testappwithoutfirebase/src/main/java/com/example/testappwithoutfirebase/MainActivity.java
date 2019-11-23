@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                metaData.put("Amount", 5000);
 
 
-                action.addEvent("case1", metaData);
+                action.addEvent("Place order", metaData);
 
                 gameBallApp.addAction(action, new Callback()
                 {

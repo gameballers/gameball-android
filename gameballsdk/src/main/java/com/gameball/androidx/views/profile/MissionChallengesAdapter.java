@@ -58,7 +58,7 @@ public class MissionChallengesAdapter extends RecyclerView.Adapter<MissionChalle
         if (isOrdered && position < mData.size() - 1) {
             holder.arrowIcon.setVisibility(View.VISIBLE);
         } else {
-            holder.arrowIcon.setVisibility(View.GONE);
+            holder.arrowIcon.setVisibility(View.INVISIBLE);
         }
 
         if (!item.isUnlocked()) {
