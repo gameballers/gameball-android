@@ -1,24 +1,16 @@
 package com.gameball.androidx.views.leaderBoard;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.gameball.androidx.local.LocalDataSource;
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.response.BaseResponse;
-import com.gameball.androidx.model.response.PlayerAttributes;
+import com.gameball.androidx.model.response.LeaderBoardResponse;
 import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSource;
 
-import java.util.ArrayList;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 public class LeaderBoardPresenter implements LeaderBoardContract.Presenter
 {
@@ -40,11 +32,11 @@ public class LeaderBoardPresenter implements LeaderBoardContract.Presenter
     }
 
     @Override
-    public void getLeaderBoard()
+    public void getLeaderBoard(int limit)
     {
         view.showLoadingIndicator();
-        profileRemoteDataSource.getLeaderBoard(sharedPreferencesUtils.getPlayerUniqueId())
-                .subscribe(new SingleObserver<BaseResponse<ArrayList<PlayerAttributes>>>()
+        profileRemoteDataSource.getLeaderBoard(sharedPreferencesUtils.getPlayerID(), limit)
+                .subscribe(new SingleObserver<BaseResponse<LeaderBoardResponse>>()
                 {
                     @Override
                     public void onSubscribe(Disposable d)
@@ -53,11 +45,10 @@ public class LeaderBoardPresenter implements LeaderBoardContract.Presenter
                     }
 
                     @Override
-                    public void onSuccess(BaseResponse<ArrayList<PlayerAttributes>> arrayListBaseResponse)
+                    public void onSuccess(BaseResponse<LeaderBoardResponse> leaderBoardResponseBaseResponse)
                     {
-                        view.fillLeaderBoard(arrayListBaseResponse.getResponse());
+                        view.fillLeaderBoard(leaderBoardResponseBaseResponse.getResponse());
                         view.hideLoadingIndicator();
-                        getPlayerRank(arrayListBaseResponse.getResponse());
                     }
 
                     @Override
@@ -65,49 +56,6 @@ public class LeaderBoardPresenter implements LeaderBoardContract.Presenter
                     {
                         view.hideLoadingIndicator();
                         view.showNoInternetLayout();
-                    }
-                });
-    }
-
-    public void getPlayerRank(final ArrayList<PlayerAttributes> leaderboard)
-    {
-        Observable.fromIterable(leaderboard)
-                .filter(new PlayerRankFilter(SharedPreferencesUtils.getInstance().getPlayerUniqueId()))
-                .map(new Function<PlayerAttributes, Integer>()
-                {
-                    @Override
-                    public Integer apply(PlayerAttributes playerAttributes) throws Exception
-                    {
-                        return leaderboard.indexOf(playerAttributes);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Integer>()
-                {
-                    @Override
-                    public void onSubscribe(Disposable d)
-                    {
-
-                    }
-
-                    @Override
-                    public void onNext(Integer integer)
-                    {
-                        view.onPlayerRankReady(integer, leaderboard.size());
-                    }
-
-                    @Override
-                    public void onError(Throwable e)
-                    {
-                        Log.e("player_rank",e.getMessage());
-                        view.showNoInternetLayout();
-                    }
-
-                    @Override
-                    public void onComplete()
-                    {
-                        Log.i("player_rank","success");
                     }
                 });
     }

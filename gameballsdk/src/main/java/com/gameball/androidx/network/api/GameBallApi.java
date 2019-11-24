@@ -14,8 +14,8 @@ import com.gameball.androidx.model.response.BaseResponse;
 import com.gameball.androidx.model.response.ClientBotSettings;
 import com.gameball.androidx.model.response.GetWithUnlocksWrapper;
 import com.gameball.androidx.model.response.HoldPointsResponse;
+import com.gameball.androidx.model.response.LeaderBoardResponse;
 import com.gameball.androidx.model.response.Notification;
-import com.gameball.androidx.model.response.PlayerAttributes;
 import com.gameball.androidx.model.response.PlayerBalanceResponse;
 import com.gameball.androidx.model.response.PlayerInfoResponse;
 import com.gameball.androidx.model.response.PlayerRegisterResponse;
@@ -50,7 +50,8 @@ public interface GameBallApi {
     Single<BaseResponse<GetWithUnlocksWrapper>> getWithUnlocks(@Query("PlayerUniqueId") String playerUniqueId);
 
     @GET(Config.GetLeaderBoard)
-    Single<BaseResponse<ArrayList<PlayerAttributes>>> getLeaderBoard(@Query("PlayerUniqueId") String playerUniqueId);
+    Single<BaseResponse<LeaderBoardResponse>> getLeaderBoard(@Query("playerId") int playerUniqueId,
+                                                                        @Query("limit") int limit);
 
     @GET(Config.GetBotSettings)
     Single<BaseResponse<ClientBotSettings>> getBotSettings();
