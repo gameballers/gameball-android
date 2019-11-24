@@ -7,18 +7,23 @@
         android:usesCleartextTraffic="true">
         <activity android:name="com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity"
             android:theme="@style/Theme.Transparent"
+            android:screenOrientation="portrait"
             />
         <activity android:name="com.gameball.androidx.views.smallNotification.SmallNotificationActivity"
             android:theme="@style/Theme.Transparent"
+            android:screenOrientation="portrait"
             />
         <activity android:name="com.gameball.androidx.views.largeNotification.LargeNotificationActivity"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name="com.gameball.androidx.views.challengeDetails.ChallengeDetailsActivity"
-            android:theme="@style/GameballTheme" />
+            android:theme="@style/GameballTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.gameball.androidx.views.GameBallMainActivity"
-            android:theme="@style/GameballTheme">
+            android:theme="@style/GameballTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="GAME_BALL_MAIN_ACTIVITY" />
 
@@ -27,7 +32,8 @@
         </activity>
         <activity
             android:name="com.gameball.androidx.views.GameBallActivity"
-            android:theme="@style/Theme.Transparent">
+            android:theme="@style/Theme.Transparent"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="GAME_BALL_SDK" />
 
