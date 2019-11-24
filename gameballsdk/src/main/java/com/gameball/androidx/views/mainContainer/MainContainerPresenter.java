@@ -58,6 +58,7 @@ public class MainContainerPresenter implements MainContainerContract.Presenter
                                     @Override
                                     public void onSuccess(BaseResponse<PlayerInfoResponse> playerInfoResponseBaseResponse)
                                     {
+                                        sharedPreferencesUtils.putPlayerID(playerInfoResponseBaseResponse.getResponse().getPlayerAttributes().getPlayerId());
                                         localDataSource.playerAttributes = playerInfoResponseBaseResponse.getResponse().
                                                 getPlayerAttributes();
                                         localDataSource.nextLevel = playerInfoResponseBaseResponse.getResponse().

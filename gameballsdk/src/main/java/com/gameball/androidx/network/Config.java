@@ -9,7 +9,7 @@ public class Config {
     public static final String PlayerInfo = "api/v1.0/Bots/PlayerInfo";
     public static final String GetWithUnlocks = "api/v1.0/Bots/challenges";
     public static final String GetNextLevel = "api/Bots/GetNextLevel";
-    public static final String GetLeaderBoard = "api/v1.0/Bots/leaderBoard";
+    public static final String GetLeaderBoard = "api/v1.0/Bots/LeaderboardWithRank";
     public static final String GetBotSettings = "api/v1.0/Bots/BotSettings?c=mobile";
     public static final String AddNewAction = "api/v1.0/integrations/Action";
     public static final String RewardPoints = "api/integrations/Transaction/Reward";

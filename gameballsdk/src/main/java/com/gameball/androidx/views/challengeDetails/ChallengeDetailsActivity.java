@@ -208,7 +208,13 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
         status.setText(getResources().getString(R.string.locked));
         statusDescription.setText(statusPrefix);
 
-        challengeRewardTxt.setText(getGameRewardText());
+        String rewardStr = getGameRewardText();
+        if(rewardStr != null) {
+            challengeRewardTxt.setVisibility(View.VISIBLE);
+            challengeRewardTxt.setText(rewardStr);
+        }
+        else
+            challengeRewardTxt.setVisibility(View.GONE);
     }
 
     private void setupAchievedStatus()
@@ -233,8 +239,14 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
     private void setupViewsByBehaviourTypeId()
     {
-        challengeRewardTxt.setText(getGameRewardText());
-        challengeRewardTxt.startAnimation(fadeIn);
+        String rewardStr = getGameRewardText();
+        if(rewardStr != null) {
+            challengeRewardTxt.setText(rewardStr);
+            challengeRewardTxt.startAnimation(fadeIn);
+            challengeRewardTxt.setVisibility(View.VISIBLE);
+        } else {
+            challengeRewardTxt.setVisibility(View.GONE);
+        }
 
         if (game.getBehaviorTypeId() == HIGH_SCORE_BASED)
         {
@@ -263,7 +275,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
 
     private String getGameRewardText() {
 
-        String result = "";
+        String result = null;
 
         if (game.getRewardPoints() > 0 && game.getRewardFrubies() > 0) {
             result = getString(

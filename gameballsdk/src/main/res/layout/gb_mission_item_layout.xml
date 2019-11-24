@@ -79,7 +79,7 @@
         android:id="@+id/gb_challenges_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/gb_mission_reward"
+        app:layout_constraintTop_toBottomOf="@id/gb_mission_icon"
         app:layout_constraintStart_toStartOf="@id/gb_mission_icon"
         android:layout_marginTop="15dp"
         tools:text="4 Challenges"

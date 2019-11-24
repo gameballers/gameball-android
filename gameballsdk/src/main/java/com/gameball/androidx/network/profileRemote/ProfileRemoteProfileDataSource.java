@@ -5,8 +5,8 @@ import com.gameball.androidx.model.request.PlayerInfoBody;
 import com.gameball.androidx.model.response.BaseResponse;
 import com.gameball.androidx.model.response.ClientBotSettings;
 import com.gameball.androidx.model.response.GetWithUnlocksWrapper;
+import com.gameball.androidx.model.response.LeaderBoardResponse;
 import com.gameball.androidx.model.response.Notification;
-import com.gameball.androidx.model.response.PlayerAttributes;
 import com.gameball.androidx.model.response.PlayerInfoResponse;
 import com.gameball.androidx.network.Network;
 import com.gameball.androidx.network.api.GameBallApi;
@@ -61,9 +61,9 @@ public class ProfileRemoteProfileDataSource implements ProfileDataSourceContract
     }
 
     @Override
-    public Single<BaseResponse<ArrayList<PlayerAttributes>>> getLeaderBoard(String playerUniqueId)
+    public Single<BaseResponse<LeaderBoardResponse>> getLeaderBoard(int playerId, int limit)
     {
-        return gameBallApi.getLeaderBoard(playerUniqueId)
+        return gameBallApi.getLeaderBoard(playerId, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

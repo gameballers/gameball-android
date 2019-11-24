@@ -40,4 +40,26 @@
         android:id="@+id/gb_no_internet_layout"
         layout="@layout/gb_no_internet_connection_layout"
         android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/notification_empty_state_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_gb_notifications_emptystate"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/notification_empty_state_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification_empty_state_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textColor="#cccccc"
+        android:textSize="16sp"
+        android:fontFamily="@font/gb_montserrat_regular"
+        android:text="No notifications"
+        android:visibility="gone"/>
 </RelativeLayout>

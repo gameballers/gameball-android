@@ -69,7 +69,7 @@ public class ChallengesAdapter extends RecyclerView.Adapter<ChallengesAdapter.It
         else if(item.getRewardPoints() > 0)
             holder.challengeRewardPts.setText(String.format(Locale.getDefault(),
                     "%d %s", item.getRewardPoints(),
-                mContext.getString(R.string.pts)));
+                clientBotSettings.getWalletPointsName()));
         else
             holder.challengeRewardPts.setVisibility(View.GONE);
         
