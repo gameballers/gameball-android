@@ -37,12 +37,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/gb_notification_icon"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/gb_notification_body"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-
             tools:text="Hurry!"
             android:fontFamily="@font/gb_montserrat_bold"
             android:textColor="@android:color/black"
+            app:layout_constraintVertical_chainStyle="packed"
             android:textSize="12sp"
             />
 
@@ -54,6 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/gb_notification_title"
             app:layout_constraintStart_toStartOf="@id/gb_notification_title"
             app:layout_constraintEnd_toEndOf="@id/gb_notification_title"
+            app:layout_constraintBottom_toBottomOf="@id/gb_notification_icon"
             android:layout_marginTop="3dp"
             android:maxLines="2"
             android:ellipsize="end"
@@ -61,6 +62,7 @@
             android:fontFamily="@font/gb_montserrat_light"
             android:textColor="@android:color/black"
             android:textSize="10sp"
+            app:layout_constraintVertical_chainStyle="packed"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

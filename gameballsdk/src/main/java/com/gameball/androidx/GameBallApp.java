@@ -10,18 +10,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.core.app.NotificationCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.request.Action;
@@ -50,9 +51,8 @@ import com.gameball.androidx.utils.Constants;
 import com.gameball.androidx.utils.DialogManager;
 import com.gameball.androidx.views.GameBallMainActivity;
 import com.gameball.androidx.views.largeNotification.LargeNotificationActivity;
-import com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity;
 import com.gameball.androidx.views.mainContainer.MainContainerFragment;
-import com.gameball.androidx.views.smallNotification.SmallNotificationActivity;
+import com.gameball.androidx.views.popupNotificationView.PopupNotificationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -295,7 +295,7 @@ public class GameBallApp {
                 switch (messageBody.getType()) {
                     case NotificationBody.SMALL_TOAST:
 //                        notificationIntent = new Intent(mContext, SmallNotificationActivity.class);
-                        DialogManager.showCustomNotification(mContext,messageBody);
+                        DialogManager.addNotificationToQue(mContext,messageBody);
                         break;
                     case NotificationBody.LARGE_TOAST:
                         notificationIntent = new Intent(mContext, PopupNotificationActivity.class);
