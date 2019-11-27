@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gameball.androidx.R;
 import com.gameball.androidx.local.SharedPreferencesUtils;
@@ -304,7 +305,7 @@ public class ChallengeDetailsActivity extends AppCompatActivity implements View.
     private boolean isHideProgressLayout()
     {
         int behaviorTypeId = game.getBehaviorTypeId();
-        return behaviorTypeId == BIRTHDAY || behaviorTypeId == JOIN_ANNIVERSARY
+        return !game.isActive() || behaviorTypeId == BIRTHDAY || behaviorTypeId == JOIN_ANNIVERSARY
                 || behaviorTypeId == UPON_LOGIN || (game.isReferral() && game.isAchieved())
                 || (!game.isRepeatable() && game.isAchieved());
     }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GameBallSdk</string>
     <string name="default_notification_channel_id">GAME_BALL_CHANNEL_ID</string>
-    <string name="achievements">Achievements</string>
+    <string name="badges">Badges</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="frubies">frubies</string>
     <string name="you_are_on_level">You are on level</string>
@@ -29,4 +29,6 @@
     <string name="percentage">%d%%</string>
     <string name="count_challenges">%d Challenges</string>
     <string name="mission_challenge_achieved_count">%dx</string>
+    <string name="badges_description">This is your badges board, collect badges and win rewards</string>
+    <string name="missions_description">Complete the below missions and win their rewards</string>
 </resources>

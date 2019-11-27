@@ -94,6 +94,12 @@ public class Game
     @SerializedName("milestones")
     @Expose
     private ArrayList<Milestone> milestones;
+    @SerializedName("isActive")
+    @Expose
+    private boolean isActive;
+    @SerializedName("repeat")
+    @Expose
+    private int repeat;
 
     public String getGameName() {
         return gameName;
@@ -233,6 +239,18 @@ public class Game
 
     public boolean isAchieved()
     {
-        return achievedCount > 0;
+        switch (repeat) {
+            case -1:
+                return true;
+            case 0:
+                return false;
+            default:
+                return achievedCount >= repeat;
+        }
+    }
+
+    public boolean isActive()
+    {
+        return isActive;
     }
 }
