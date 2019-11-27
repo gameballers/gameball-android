@@ -20,15 +20,29 @@
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
-            android:text="@string/achievements"
+            android:text="@string/badges"
             android:textSize="16sp"
             android:fontFamily="@font/gb_montserrat_regular"/>
+
+        <TextView
+            android:id="@+id/gb_badges_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gb_achievements_title"
+            android:layout_alignStart="@id/gb_achievements_recyclerView"
+            android:layout_alignEnd="@id/gb_achievements_recyclerView"
+            android:layout_marginTop="12dp"
+            android:text="@string/badges_description"
+            android:textSize="14sp"
+            android:fontFamily="@font/gb_montserrat_regular"
+            android:textColor="@android:color/black"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gb_achievements_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/gb_achievements_title"
+            android:layout_below="@id/gb_badges_description"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
@@ -49,13 +63,26 @@
             android:textSize="16sp"
             android:fontFamily="@font/gb_montserrat_regular"/>
 
+        <TextView
+            android:id="@+id/gb_missions_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gb_missions_title"
+            android:layout_alignStart="@id/gb_missions_recyclerView"
+            android:layout_alignEnd="@id/gb_missions_recyclerView"
+            android:layout_marginTop="12dp"
+            android:text="@string/missions_description"
+            android:fontFamily="@font/gb_montserrat_regular"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gb_missions_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_below="@id/gb_missions_title"
+            android:layout_below="@id/gb_missions_description"
             tools:itemCount="3"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/gb_mission_item_layout"

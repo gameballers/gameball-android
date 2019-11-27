@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GameBallSdk</string>
-    <string name="achievements">الإنجازات</string>
+    <string name="badges">الإنجازات</string>
     <string name="leaderboard">قائمة المتصدرين</string>
     <string name="frubies">فروبيز</string>
     <string name="points">نقاط</string>
