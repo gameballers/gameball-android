@@ -30,5 +30,5 @@
     <string name="count_challenges">%d Challenges</string>
     <string name="mission_challenge_achieved_count">%dx</string>
     <string name="badges_description">This is your badges board, collect badges and win rewards</string>
-    <string name="missions_description">Complete the below missions and win their rewards</string>
+    <string name="missions_description">Complete the below missions for a chance to win their rewards</string>
 </resources>
