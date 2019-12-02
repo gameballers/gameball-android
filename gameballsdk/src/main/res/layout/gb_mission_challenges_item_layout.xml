@@ -90,7 +90,7 @@
         android:layout_marginStart="12dp"
         tools:text="challenge name"
         android:textColor="@android:color/black"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:fontFamily="@font/gb_montserrat_light"
         tools:ignore="SmallSp" />
 

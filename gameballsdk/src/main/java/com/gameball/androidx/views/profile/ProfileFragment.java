@@ -3,15 +3,8 @@ package com.gameball.androidx.views.profile;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +13,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gameball.androidx.R;
 import com.gameball.androidx.local.SharedPreferencesUtils;
@@ -34,11 +34,13 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
 {
     View rootView;
     private TextView achievementTitle;
+    private TextView achievementDescription;
     private RecyclerView achievementsRecyclerView;
     private ProgressBar profileLoadingIndicator;
     private View profileLoadingIndicatorBg;
     private RelativeLayout noInternetConnectionLayout;
     private TextView missionsTitle;
+    private TextView missionsDescription;
     private RecyclerView missionRecyclerView;
 
 
@@ -83,11 +85,13 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
 
     private void initView() {
         achievementTitle = rootView.findViewById(R.id.gb_achievements_title);
+        achievementDescription = rootView.findViewById(R.id.gb_badges_description);
         achievementsRecyclerView = rootView.findViewById(R.id.gb_achievements_recyclerView);
         profileLoadingIndicator = rootView.findViewById(R.id.gb_profile_data_loading_indicator);
         profileLoadingIndicatorBg = rootView.findViewById(R.id.gb_profile_data_loading_indicator_bg);
         noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
         missionsTitle = rootView.findViewById(R.id.gb_missions_title);
+        missionsDescription = rootView.findViewById(R.id.gb_missions_description);
         missionRecyclerView = rootView.findViewById(R.id.gb_missions_recyclerView);
 
     }
@@ -120,6 +124,7 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
         } else {
             achievementTitle.setVisibility(View.GONE);
             achievementsRecyclerView.setVisibility(View.GONE);
+            achievementDescription.setVisibility(View.GONE);
 
         }
 
@@ -132,6 +137,7 @@ public class ProfileFragment extends Fragment  implements ProfileContract.View
         } else {
             missionsTitle.setVisibility(View.GONE);
             missionRecyclerView.setVisibility(View.GONE);
+            missionsDescription.setVisibility(View.GONE);
         }
     }
 
