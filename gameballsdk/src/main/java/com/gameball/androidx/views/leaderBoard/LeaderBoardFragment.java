@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,7 @@ import com.gameball.androidx.model.response.PlayerRank;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class LeaderBoardFragment extends Fragment implements LeaderBoardContract.View
-{
+public class LeaderBoardFragment extends Fragment implements LeaderBoardContract.View {
     View rootView;
     private TextView filerBtn;
     private TextView leaderTitle;
@@ -68,7 +68,7 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     }
 
     private void initComponents() {
-        presenter = new LeaderBoardPresenter(getContext(),this);
+        presenter = new LeaderBoardPresenter(getContext(), this);
         leaderBoardAdapter = new LeaderBoardAdapter(getContext(), new ArrayList<PlayerAttributes>());
         clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
     }
@@ -78,54 +78,38 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
         leaderboardRecyclerview = rootView.findViewById(R.id.gb_leaderboard_recyclerview);
         loadingIndicator = rootView.findViewById(R.id.gb_loading_indicator);
         leaderTitle = rootView.findViewById(R.id.gb_leaderboard_title);
-        playerRankTv= rootView.findViewById(R.id.player_rank_value);
+        playerRankTv = rootView.findViewById(R.id.player_rank_value);
         noInternetLayout = rootView.findViewById(R.id.gb_no_internet_layout);
         leaderBoardEmptyIv = rootView.findViewById(R.id.leaderboard_empty_state_iv);
         leaderBoardEmptyTv = rootView.findViewById(R.id.leaderboard_empty_state_tv);
         leaderBoardFilterBtn = rootView.findViewById(R.id.gb_leaderboard_filter_btn);
 
         filterMenu = new PopupMenu(getContext(), leaderBoardFilterBtn);
-
-        filterMenu.getMenu().add("Today");
-        filterMenu.getMenu().add("Yesterday");
-        filterMenu.getMenu().add("This week");
-        filterMenu.getMenu().add("Last week");
-        filterMenu.getMenu().add("This month");
-        filterMenu.getMenu().add("Last month");
-        filterMenu.getMenu().add("This year");
-        filterMenu.getMenu().add("All");
+        MenuInflater menuInflater = filterMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.leaderboard_filter_menu, filterMenu.getMenu());
 
         filterMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 leaderBoardAdapter.setmData(new ArrayList<PlayerAttributes>());
                 leaderBoardAdapter.notifyDataSetChanged();
-                switch (menuItem.getOrder()){
-                    case 0:
-                        presenter.getLeaderBoard(LeaderBoardResponse.TODAY);
-                        break;
-                    case 1:
-                        presenter.getLeaderBoard(LeaderBoardResponse.YESTERDAY);
-                        break;
-                    case 2:
-                        presenter.getLeaderBoard(LeaderBoardResponse.THIS_WEEK);
-                        break;
-                    case 3:
-                        presenter.getLeaderBoard(LeaderBoardResponse.LAST_WEEK);
-                        break;
-                    case 4:
-                        presenter.getLeaderBoard(LeaderBoardResponse.THIS_MONTH);
-                        break;
-                    case 5:
-                        presenter.getLeaderBoard(LeaderBoardResponse.LAST_MONTH);
-                        break;
-                    case 6:
-                        presenter.getLeaderBoard(LeaderBoardResponse.THIS_YEAR);
-                        break;
-                    case 7:
-                        presenter.getLeaderBoard(LeaderBoardResponse.ALL);
-                        break;
-
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.today_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.TODAY);
+                } else if (itemId == R.id.yesterday_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.YESTERDAY);
+                } else if (itemId == R.id.this_week_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.THIS_WEEK);
+                } else if (itemId == R.id.last_week_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.LAST_WEEK);
+                } else if (itemId == R.id.this_month_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.THIS_MONTH);
+                } else if (itemId == R.id.last_month_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.LAST_MONTH);
+                } else if (itemId == R.id.this_year_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.THIS_YEAR);
+                } else if (itemId == R.id.all_filter) {
+                    presenter.getLeaderBoard(LeaderBoardResponse.ALL);
                 }
 
                 leaderBoardFilterBtn.setText(menuItem.getTitle());
@@ -134,8 +118,7 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
         });
     }
 
-    private void setupBotSettings()
-    {
+    private void setupBotSettings() {
         leaderTitle.setTextColor(Color.parseColor(clientBotSettings.getBotMainColor()));
         loadingIndicator.getIndeterminateDrawable().setColorFilter(Color.parseColor(clientBotSettings.getBotMainColor()),
                 PorterDuff.Mode.SRC_IN);
@@ -155,11 +138,10 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     }
 
     @Override
-    public void fillLeaderBoard(LeaderBoardResponse leaderBoardResponse)
-    {
+    public void fillLeaderBoard(LeaderBoardResponse leaderBoardResponse) {
         ArrayList<PlayerAttributes> leaderBoard = leaderBoardResponse.getPlayerBot();
         PlayerRank playerRank = leaderBoardResponse.getPlayerRank();
-        if(leaderBoard.size() > 0) {
+        if (leaderBoard.size() > 0) {
             leaderBoardAdapter.setmData(leaderBoard);
             leaderBoardAdapter.notifyDataSetChanged();
 
@@ -178,14 +160,12 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     }
 
     @Override
-    public void showLoadingIndicator()
-    {
+    public void showLoadingIndicator() {
         loadingIndicator.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideLoadingIndicator()
-    {
+    public void hideLoadingIndicator() {
         loadingIndicator.setVisibility(View.GONE);
     }
 
@@ -195,11 +175,9 @@ public class LeaderBoardFragment extends Fragment implements LeaderBoardContract
     }
 
     @Override
-    public void onStop()
-    {
+    public void onStop() {
         PowerManager pm = (PowerManager) (getContext()).getSystemService(Context.POWER_SERVICE);
-        if((pm.isInteractive()))
-        {
+        if ((pm.isInteractive())) {
             presenter.unsubscribe();
         }
 
