@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/today_filter"
+        android:title="Today"/>
+    <item
+        android:id="@+id/yesterday_filter"
+        android:title="Yesterday"/>
+    <item
+        android:id="@+id/this_week_filter"
+        android:title="This week"/>
+    <item
+        android:id="@+id/last_week_filter"
+        android:title="Last Week"/>
+    <item
+        android:id="@+id/this_month_filter"
+        android:title="This month"/>
+    <item
+        android:id="@+id/last_month_filter"
+        android:title="Last month"/>
+    <item
+        android:id="@+id/this_year_filter"
+        android:title="This year"/>
+    <item
+        android:id="@+id/all_filter"
+        android:title="All"/>
+
+</menu>
