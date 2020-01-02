@@ -10,18 +10,6 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
-
-import androidx.annotation.Nullable;
-
-import com.gameball.androidx.views.GameBallMainActivity;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager.widget.ViewPager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +22,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
+
 import com.gameball.androidx.R;
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.response.ClientBotSettings;
@@ -42,6 +36,9 @@ import com.gameball.androidx.model.response.PlayerAttributes;
 import com.gameball.androidx.utils.DisplayUtils;
 import com.gameball.androidx.utils.ImageDownloader;
 import com.gameball.androidx.utils.ProgressBarAnimation;
+import com.gameball.androidx.views.GameBallMainActivity;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.Locale;
 
@@ -246,11 +243,18 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     @Override
     public void onProfileInfoLoaded(PlayerAttributes playerAttributes, Level nextLevel) {
         SharedPreferencesUtils.getInstance().putPlayerRefferalLink(playerAttributes.getDynamicLink());
+        /**
+         * the bellow check is made for a certain client which is fayvo.
+         * it hides the player data section
+         */
+        if(!SharedPreferencesUtils.getInstance().getClientId().equals("d58a919179834f1583b66edd1c10f9bd")) {
+            if (playerAttributes.getDisplayName() != null && !playerAttributes.getDisplayName().isEmpty())
+                txtPlayerName.setText(playerAttributes.getDisplayName());
 
-        if (playerAttributes.getDisplayName() != null && !playerAttributes.getDisplayName().isEmpty())
-            txtPlayerName.setText(playerAttributes.getDisplayName());
-
-        fillPlayerData(playerAttributes, nextLevel);
+            fillPlayerData(playerAttributes, nextLevel);
+        } else {
+            rootView.findViewById(R.id.player_details_layout).setVisibility(View.GONE);
+        }
         prepView();
     }
 
