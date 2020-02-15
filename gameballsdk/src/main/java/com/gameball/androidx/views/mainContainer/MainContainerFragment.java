@@ -2,11 +2,9 @@ package com.gameball.androidx.views.mainContainer;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -23,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -45,7 +44,6 @@ import java.util.Locale;
 public class MainContainerFragment extends DialogFragment implements MainContainerContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     private View rootView;
-    private TextView txtPlayerName;
     private ImageButton btnClose;
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -59,9 +57,11 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private View loadingIndicatorBg;
     private RelativeLayout noInternetConnectionLayout;
     private SwipeRefreshLayout pullToRefresh;
-    private TextView singlePoints;
     private AppBarLayout appBarLayout;
-    private ConstraintLayout walletRankPointsContainer;
+    private ConstraintLayout userDataLayout;
+    private Toolbar toolbar;
+    private ConstraintLayout walletPointsContainer;
+    private ConstraintLayout rankPointsContainer;
 
     private Animation fadeIn;
 
@@ -131,7 +131,6 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     }*/
 
     private void initView() {
-        txtPlayerName = rootView.findViewById(R.id.gb_txt_player_name);
         btnClose = rootView.findViewById(R.id.gb_btn_close);
         tabs = rootView.findViewById(R.id.gb_tabs);
         viewPager = rootView.findViewById(R.id.gb_view_pager);
@@ -147,9 +146,11 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         loadingIndicatorBg = rootView.findViewById(R.id.gb_loading_indicator_bg);
         noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
-        singlePoints = rootView.findViewById(R.id.gb_single_points);
-        walletRankPointsContainer = rootView.findViewById(R.id.gb_rank_and_wallet_container);
         appBarLayout = rootView.findViewById(R.id.gb_appbar_layout);
+        userDataLayout = rootView.findViewById(R.id.player_details_layout);
+        toolbar = rootView.findViewById(R.id.gb_toolbar);
+        walletPointsContainer = rootView.findViewById(R.id.gb_wallet_points_layout);
+        rankPointsContainer = rootView.findViewById(R.id.gb_rank_points_layout);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
@@ -167,13 +168,12 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         tabs.setSelectedTabIndicatorColor(Color.parseColor(clientBotSettings.getBotMainColor()));
         loadingIndicator.getIndeterminateDrawable().setColorFilter(Color.parseColor(clientBotSettings.getBotMainColor()),
                 PorterDuff.Mode.SRC_IN);
-        LayerDrawable progressDrawable = (LayerDrawable) levelProgress.getProgressDrawable();
-        progressDrawable.setColorFilter(Color.parseColor(clientBotSettings.getBotMainColor()),
-                PorterDuff.Mode.SRC_IN);
         currentFrubiesTitle.setText(clientBotSettings.getRankPointsName());
         currentPointTitle.setText(clientBotSettings.getWalletPointsName());
         pullToRefresh.setColorSchemeColors(Color.parseColor(clientBotSettings.getBotMainColor()));
-        singlePoints.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(clientBotSettings.getBotMainColor())));
+        userDataLayout.setBackgroundColor(Color.parseColor(clientBotSettings.getBotMainColor()));
+        toolbar.setBackgroundColor(Color.parseColor(clientBotSettings.getBotMainColor()));
+
     }
 
     private void prepView() {
@@ -249,8 +249,6 @@ public class MainContainerFragment extends DialogFragment implements MainContain
          */
         if(!SharedPreferencesUtils.getInstance().getClientId().equals("d58a919179834f1583b66edd1c10f9bd")) {
             if (playerAttributes.getDisplayName() != null && !playerAttributes.getDisplayName().isEmpty())
-                txtPlayerName.setText(playerAttributes.getDisplayName());
-
             fillPlayerData(playerAttributes, nextLevel);
         } else {
             rootView.findViewById(R.id.player_details_layout).setVisibility(View.GONE);
@@ -276,28 +274,20 @@ public class MainContainerFragment extends DialogFragment implements MainContain
             ImageDownloader.downloadImage(getContext(), levelLogo,
                     playerAttributes.getLevel().getIcon().getFileName());
 
-        if (clientBotSettings.isWalletPointsVisible() && clientBotSettings.isRankPointsVisible()) {
-
-            walletRankPointsContainer.setVisibility(View.VISIBLE);
-            singlePoints.setVisibility(View.GONE);
+        if(clientBotSettings.isWalletPointsVisible()) {
+            walletPointsContainer.setVisibility(View.VISIBLE);
             currentPointsValue.setText(String.format(Locale.getDefault(),
                     "%d", playerAttributes.getAccPoints()));
+        } else {
+            walletPointsContainer.setVisibility(View.GONE);
+        }
+
+        if(clientBotSettings.isRankPointsVisible()) {
+            rankPointsContainer.setVisibility(View.VISIBLE);
             currentFrubiesValue.setText(String.format(Locale.getDefault(),
                     "%d", playerAttributes.getAccFrubies()));
         } else {
-            walletRankPointsContainer.setVisibility(View.GONE);
-
-            if (clientBotSettings.isWalletPointsVisible()) {
-                singlePoints.setVisibility(View.VISIBLE);
-                singlePoints.setText(String.format(Locale.getDefault(),"%d",playerAttributes.getAccPoints()));
-                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.gb_ic_points, 0,0,0);
-            } else if (clientBotSettings.isRankPointsVisible()) {
-                singlePoints.setVisibility(View.VISIBLE);
-                singlePoints.setText(String.format(Locale.getDefault(), "%d",playerAttributes.getAccFrubies()));
-                singlePoints.setCompoundDrawablesRelativeWithIntrinsicBounds( R.drawable.gb_ic_diamon_outline, 0,0,0);
-            } else {
-                singlePoints.setVisibility(View.GONE);
-            }
+            rankPointsContainer.setVisibility(View.GONE);
         }
 
         if (nextLevel != null) {
