@@ -58,7 +58,12 @@ public class ReferralPresenter implements ReferralContract.Presenter
                     @Override
                     public void onSuccess(List<Game> games)
                     {
-                        view.onReferralChallengesFiltered((ArrayList<Game>) games);
+                        int friendsReferral = 0;
+                        for (Game game:games) {
+                            friendsReferral += game.getAchievedCount();
+                        }
+
+                        view.onReferralChallengesFiltered((ArrayList<Game>) games, friendsReferral);
                     }
 
                     @Override

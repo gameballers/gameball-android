@@ -8,7 +8,7 @@ public interface ReferralContract
 {
     interface View
     {
-        void onReferralChallengesFiltered(ArrayList<Game> games);
+        void onReferralChallengesFiltered(ArrayList<Game> games, int friendsReferral);
     }
 
     interface Presenter
