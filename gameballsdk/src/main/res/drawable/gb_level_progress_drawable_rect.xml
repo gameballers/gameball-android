@@ -6,7 +6,6 @@
             <size
                 android:width="15dp"
                 android:height="15dp" />
-            <corners android:radius="10dp" />
         </shape>
     </item>
     <item android:id="@+id/progress_item">
@@ -18,7 +17,6 @@
                 <item android:id="@+id/actual_progress_color">
                     <shape>
                         <solid android:color="#7ec76e" />
-                        <corners android:radius="10dp" />
                     </shape>
                 </item>
             </layer-list>

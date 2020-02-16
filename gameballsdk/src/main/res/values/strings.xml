@@ -4,7 +4,7 @@
     <string name="badges">Badges</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="frubies">frubies</string>
-    <string name="you_are_on_level">You are on level</string>
+    <string name="your_level">Your level</string>
     <string name="next_level_at">Next level at</string>
     <string name="points">Points</string>
     <string name="progress">Progress</string>
@@ -31,4 +31,5 @@
     <string name="mission_challenge_achieved_count">%dx</string>
     <string name="badges_description">This is your badges board, collect badges and win rewards</string>
     <string name="missions_description">Complete the below missions for a chance to win their rewards</string>
+    <string name="friends_referral_count">You have referred %d friends</string>
 </resources>

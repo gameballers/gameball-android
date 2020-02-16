@@ -1,134 +1,96 @@
 package com.gameball.androidx.views.referral;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
-import androidx.recyclerview.widget.RecyclerView;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gameball.androidx.R;
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.response.ClientBotSettings;
 import com.gameball.androidx.model.response.Game;
 import com.gameball.androidx.utils.Constants;
-import com.gameball.androidx.utils.ProgressBarAnimation;
-import com.gameball.androidx.views.challengeDetails.ChallengeDetailsActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChallengesAdapter.ItemViewHolder>
-{
+public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChallengesAdapter.ItemViewHolder> {
     private Context mContext;
     private ArrayList<Game> mData;
-    ClientBotSettings clientBotSettings;
+    private ClientBotSettings clientBotSettings;
+    private FragmentManager fm;
 
-    public ReferralChallengesAdapter(Context context, ArrayList<Game> data)
-    {
+
+    public ReferralChallengesAdapter(Context context, FragmentManager fm, ArrayList<Game> data) {
         this.mData = data;
         this.mContext = context;
         clientBotSettings = SharedPreferencesUtils.getInstance().getClientBotSettings();
+        this.fm = fm;
     }
 
     @Override
-    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View row = inflater.inflate(R.layout.gb_referral_challenge_item_layout, parent, false);
         return new ItemViewHolder(row);
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int position)
-    {
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
         Game item = mData.get(position);
-        if(item.getGameName() != null)
-            holder.challengeName.setText(item.getGameName());
 
-        String rewardStr = String.format(Locale.getDefault(),"%d %s | %d %s",item.getRewardFrubies(),
+        String rewardStr = String.format(Locale.getDefault(), "%d %s | %d %s", item.getRewardFrubies(),
                 clientBotSettings.getRankPointsName(), item.getRewardPoints(),
                 clientBotSettings.getWalletPointsName());
 
         holder.challengeRewardTxt.setText(rewardStr);
 
-        Picasso.get()
-                .load(item.getIcon())
-                .into(holder.challengeIcon);
+        if (position == mData.size() - 1)
+            holder.referralItemSeparator.setVisibility(View.GONE);
 
-
-        //progressbar setup
-        holder.challengeProgress.setProgress(0);
-
-        LayerDrawable challengeProgress = (LayerDrawable) holder.challengeProgress.getProgressDrawable();
-        challengeProgress.setColorFilter(Color.parseColor(clientBotSettings.getBotMainColor()), PorterDuff.Mode.SRC_IN);
-
-            final ProgressBarAnimation progressAnimation = new ProgressBarAnimation(holder.challengeProgress,
-                    0, item.getCompletionPercentage().intValue());
-            progressAnimation.setDuration(700);
-            progressAnimation.setFillAfter(true);
-            holder.challengeProgress.startAnimation(progressAnimation);
-
-        if(item.getAchievedCount() >= 1)
-            holder.challengeCheck.setImageResource(R.drawable.gb_ic_checkmark);
-        else
-            holder.challengeCheck.setImageTintList(ColorStateList.
-                    valueOf(Color.parseColor("#f2f2f2")));
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return mData.size();
     }
 
-    public void setmData(ArrayList<Game> mData)
-    {
+    public void setmData(ArrayList<Game> mData) {
         this.mData = mData;
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
-		public ImageView challengeIcon;
-        public ImageView challengeCheck;
-        public TextView challengeAchievedCount;
-        public TextView challengeName;
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView challengeRewardTxt;
-        public ProgressBar challengeProgress;
+        View referralItemSeparator;
+        TextView challengeDescriptionBtn;
 
 
-        public ItemViewHolder(View itemView)
-        {
+        public ItemViewHolder(View itemView) {
             super(itemView);
-            challengeIcon = itemView.findViewById(R.id.gb_challenge_icon);
-            challengeCheck = itemView.findViewById(R.id.gb_challenge_check);
-            challengeAchievedCount = itemView.findViewById(R.id.gb_challenge_achieved_count);
-            challengeName = itemView.findViewById(R.id.gb_challenge_name);
             challengeRewardTxt = itemView.findViewById(R.id.gb_challenge_reward_txt);
-            challengeProgress = itemView.findViewById(R.id.gb_challenge_event_progress);
+            referralItemSeparator = itemView.findViewById(R.id.referral_item_separator);
+            challengeDescriptionBtn = itemView.findViewById(R.id.gb_challenge_description_btn);
 
-            itemView.setOnClickListener(this);
+            challengeDescriptionBtn.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View view)
-        {
+        public void onClick(View view) {
             final int pos = getLayoutPosition();
             int pos1 = getAdapterPosition();
-            if (pos == pos1)
-            {
-                Intent intent = new Intent(mContext, ChallengeDetailsActivity.class);
-                intent.putExtra(Constants.GAME_OBJ_KEY,new Gson().toJson(mData.get(pos)));
-                mContext.startActivity(intent);
+            if (pos == pos1) {
+                BottomSheetDialogFragment fragment = new ReferralChallengeDescriptionBottomSheet();
+                Bundle bundle = new Bundle() ;
+                bundle.putString(Constants.GAME_OBJ_KEY, new Gson().toJson(mData.get(pos)));
+                fragment.setArguments(bundle);
+                fragment.show(fm,"referral_challenge_description");
             }
         }
     }
