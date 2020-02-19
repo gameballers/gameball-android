@@ -5,8 +5,11 @@ import android.content.Context;
 import com.gameball.androidx.local.LocalDataSource;
 import com.gameball.androidx.local.SharedPreferencesUtils;
 import com.gameball.androidx.model.response.BaseResponse;
+import com.gameball.androidx.model.response.Game;
 import com.gameball.androidx.model.response.GetWithUnlocksWrapper;
 import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSource;
+
+import java.util.ArrayList;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.CompositeDisposable;
@@ -52,7 +55,15 @@ public class ProfilePresenter implements ProfileContract.Presenter
                     @Override
                     public void onSuccess(BaseResponse<GetWithUnlocksWrapper> arrayListBaseResponse)
                     {
-                        localDataSource.games = arrayListBaseResponse.getResponse().getGames();
+                        ArrayList<Game> filteredGames = new ArrayList<>();
+                        for(int i = 0; i < arrayListBaseResponse.getResponse().getGames().size(); i++) {
+                            Game game = arrayListBaseResponse.getResponse().getGames().get(i);
+                            if(!game.isReferral())
+                                filteredGames.add(game);
+
+                        }
+
+                        localDataSource.games = filteredGames;
                         localDataSource.missions = arrayListBaseResponse.getResponse().getMissions();
 
                         view.onWithUnlocksLoaded(localDataSource.games, localDataSource.missions);
