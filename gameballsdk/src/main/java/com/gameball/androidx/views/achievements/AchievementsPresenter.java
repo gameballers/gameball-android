@@ -11,16 +11,14 @@ import com.gameball.androidx.network.profileRemote.ProfileRemoteProfileDataSourc
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
-public class AchievementsPresenter implements AchievemetsContract.Presenter
-{
+public class AchievementsPresenter implements AchievemetsContract.Presenter {
     private Context context;
     private AchievemetsContract.View view;
     private LocalDataSource localDataSource;
     private ProfileRemoteProfileDataSource remoteDataSource;
     private SharedPreferencesUtils sharedPreferencesUtils;
 
-    public AchievementsPresenter(Context context, AchievemetsContract.View view)
-    {
+    public AchievementsPresenter(Context context, AchievemetsContract.View view) {
         this.context = context;
         this.view = view;
         localDataSource = LocalDataSource.getInstance();
@@ -29,28 +27,23 @@ public class AchievementsPresenter implements AchievemetsContract.Presenter
     }
 
     @Override
-    public void getAchievements()
-    {
+    public void getAchievements() {
         view.showLoadingIndicator();
         remoteDataSource.getWithUnlocks(sharedPreferencesUtils.getPlayerUniqueId())
-                .subscribe(new SingleObserver<BaseResponse<GetWithUnlocksWrapper>>()
-                {
+                .subscribe(new SingleObserver<BaseResponse<GetWithUnlocksWrapper>>() {
                     @Override
-                    public void onSubscribe(Disposable d)
-                    {
+                    public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onSuccess(BaseResponse<GetWithUnlocksWrapper> arrayListBaseResponse)
-                    {
+                    public void onSuccess(BaseResponse<GetWithUnlocksWrapper> arrayListBaseResponse) {
                         view.hideLoadingIndicator();
                         view.fillAchievements(arrayListBaseResponse.getResponse().getGames());
                     }
 
                     @Override
-                    public void onError(Throwable e)
-                    {
+                    public void onError(Throwable e) {
                         view.hideLoadingIndicator();
                     }
                 });
