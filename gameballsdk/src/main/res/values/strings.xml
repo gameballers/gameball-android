@@ -32,4 +32,5 @@
     <string name="badges_description">This is your badges board, collect badges and win rewards</string>
     <string name="missions_description">Complete the below missions for a chance to win their rewards</string>
     <string name="friends_referral_count">You have referred %d friends</string>
+    <string name="gb_points_actual_value_text">Equals to %d USD</string>
 </resources>

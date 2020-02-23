@@ -208,12 +208,12 @@
                             android:textSize="12sp"
                             android:fontFamily="@font/gb_montserrat_semi_bold"
                             app:layout_constraintTop_toTopOf="@id/gb_wallet_points_value"
-                            app:layout_constraintBottom_toTopOf="@id/gb_wallet_point_description"
+                            app:layout_constraintBottom_toTopOf="@id/gb_wallet_point_redemption_value"
                             app:layout_constraintStart_toEndOf="@id/wallet_points_ic"
                             app:layout_constraintVertical_chainStyle="packed"/>
 
                         <TextView
-                            android:id="@+id/gb_wallet_point_description"
+                            android:id="@+id/gb_wallet_point_redemption_value"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@id/gb_wallet_points_name"
@@ -223,7 +223,7 @@
                             android:layout_marginEnd="8dp"
                             android:textSize="10sp"
                             android:textColor="#808080"
-                            tools:text="Equals to 100 USD"
+                            tools:text="@string/gb_points_actual_value_text"
                             />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,6 +71,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private float playerProgress;
     private TextView currentFrubiesTitle;
     private TextView currentPointTitle;
+    private TextView currentPointRedemptionValue;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,6 +144,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         currentPointsValue = rootView.findViewById(R.id.gb_wallet_points_value);
         currentFrubiesTitle = rootView.findViewById(R.id.gb_ranke_name);
         currentPointTitle = rootView.findViewById(R.id.gb_wallet_points_name);
+        currentPointRedemptionValue = rootView.findViewById(R.id.gb_wallet_point_redemption_value);
         loadingIndicatorBg = rootView.findViewById(R.id.gb_loading_indicator_bg);
         noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
@@ -247,9 +249,9 @@ public class MainContainerFragment extends DialogFragment implements MainContain
          * the bellow check is made for a certain client which is fayvo.
          * it hides the player data section
          */
-        if(!SharedPreferencesUtils.getInstance().getClientId().equals("d58a919179834f1583b66edd1c10f9bd")) {
+        if (!SharedPreferencesUtils.getInstance().getClientId().equals("d58a919179834f1583b66edd1c10f9bd")) {
             if (playerAttributes.getDisplayName() != null && !playerAttributes.getDisplayName().isEmpty())
-            fillPlayerData(playerAttributes, nextLevel);
+                fillPlayerData(playerAttributes, nextLevel);
         } else {
             rootView.findViewById(R.id.player_details_layout).setVisibility(View.GONE);
         }
@@ -274,15 +276,22 @@ public class MainContainerFragment extends DialogFragment implements MainContain
             ImageDownloader.downloadImage(getContext(), levelLogo,
                     playerAttributes.getLevel().getIcon().getFileName());
 
-        if(clientBotSettings.isWalletPointsVisible()) {
+        if (clientBotSettings.isWalletPointsVisible()) {
             walletPointsContainer.setVisibility(View.VISIBLE);
             currentPointsValue.setText(String.format(Locale.getDefault(),
                     "%d", playerAttributes.getAccPoints()));
+            if (clientBotSettings.getGuest() != null) {
+                currentPointTitle.setText(getString(R.string.gb_points_actual_value_text,
+                        (clientBotSettings.getGuest().getRedemptionFactor() * playerAttributes.getAccPoints())));
+            } else {
+                currentPointTitle.setVisibility(View.GONE);
+            }
+
         } else {
             walletPointsContainer.setVisibility(View.GONE);
         }
 
-        if(clientBotSettings.isRankPointsVisible()) {
+        if (clientBotSettings.isRankPointsVisible()) {
             rankPointsContainer.setVisibility(View.VISIBLE);
             currentFrubiesValue.setText(String.format(Locale.getDefault(),
                     "%d", playerAttributes.getAccFrubies()));
