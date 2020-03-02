@@ -44,7 +44,9 @@ public class ClientBotSettings
     @SerializedName("referralIcon")
     @Expose
     private String referralIcon;
-
+    @SerializedName("guest")
+    @Expose
+    private Guest guest;
 
     public String getBotMainColor()
     {
@@ -106,5 +108,9 @@ public class ClientBotSettings
 
     public String getReferralIcon() {
         return referralIcon;
+    }
+
+    public Guest getGuest() {
+        return guest;
     }
 }

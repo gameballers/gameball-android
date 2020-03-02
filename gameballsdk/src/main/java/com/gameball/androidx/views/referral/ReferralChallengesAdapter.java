@@ -55,6 +55,11 @@ public class ReferralChallengesAdapter extends RecyclerView.Adapter<ReferralChal
         if (position == mData.size() - 1)
             holder.referralItemSeparator.setVisibility(View.GONE);
 
+        if(item.getDescription() == null)
+            holder.challengeDescriptionBtn.setVisibility(View.GONE);
+        else
+            holder.challengeDescriptionBtn.setVisibility(View. VISIBLE);
+
     }
 
     @Override
