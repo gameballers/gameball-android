@@ -281,8 +281,11 @@ public class MainContainerFragment extends DialogFragment implements MainContain
             currentPointsValue.setText(String.format(Locale.getDefault(),
                     "%d", playerAttributes.getAccPoints()));
             if (clientBotSettings.getGuest() != null) {
-                currentPointTitle.setText(getString(R.string.gb_points_actual_value_text,
-                        (clientBotSettings.getGuest().getRedemptionFactor() * playerAttributes.getAccPoints())));
+                Double playerPointActualValue =
+                        (clientBotSettings.getGuest().getRedemptionFactor() * playerAttributes.getAccPoints());
+
+                currentPointRedemptionValue.setText(getString(R.string.gb_points_actual_value_text,
+                        playerPointActualValue.intValue()));
             } else {
                 currentPointTitle.setVisibility(View.GONE);
             }
