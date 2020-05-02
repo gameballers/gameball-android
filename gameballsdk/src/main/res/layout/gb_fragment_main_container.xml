@@ -310,7 +310,7 @@
         <include
             android:id="@+id/gb_no_internet_layout"
             layout="@layout/gb_no_internet_connection_layout"
-            android:visibility="gone"
+            android:visibility="visible"
             />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
