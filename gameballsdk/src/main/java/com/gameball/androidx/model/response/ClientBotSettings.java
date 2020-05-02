@@ -113,4 +113,18 @@ public class ClientBotSettings
     public Guest getGuest() {
         return guest;
     }
+
+    public boolean isSingleTab() {
+        int tabscount = 0;
+        if(isReferralOn)
+            tabscount++;
+        if (isEnableLeaderboard())
+            tabscount++;
+
+        if(tabscount == 1)
+            return true;
+
+        return false;
+
+    }
 }

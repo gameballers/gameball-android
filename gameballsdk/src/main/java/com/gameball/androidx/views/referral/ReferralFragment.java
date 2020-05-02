@@ -104,12 +104,7 @@ public class ReferralFragment extends Fragment implements ReferralContract.View,
 
     @Override
     public void onReferralChallengesFiltered(ArrayList<Game> games, int friendsReferral) {
-        if(friendsReferral > 0) {
-            friendsReferralCountTv.setVisibility(View.VISIBLE);
-            friendsReferralCountTv.setText(getString(R.string.friends_referral_count, friendsReferral));
-        } else {
-            friendsReferralCountTv.setVisibility(View.GONE);
-        }
+        friendsReferralCountTv.setText(getString(R.string.friends_referral_count, friendsReferral));
         referralChallengesAdapter.setmData(games);
         referralChallengesAdapter.notifyDataSetChanged();
     }

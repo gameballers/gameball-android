@@ -22,7 +22,14 @@ public class TabsAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new ProfileFragment();
+                if(!clientBotSettings.isSingleTab()) {
+                    return new ProfileFragment();
+                } else {
+                    if (clientBotSettings.isReferralOn())
+                        return new ReferralFragment();
+                    else if (clientBotSettings.isEnableLeaderboard())
+                        return new LeaderBoardFragment();
+                }
             case 1:
                 if (clientBotSettings.isReferralOn())
                     return new ReferralFragment();
@@ -44,12 +51,14 @@ public class TabsAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         int count = 1;
-        if(clientBotSettings.isReferralOn())
-            count ++;
-        if(clientBotSettings.isEnableLeaderboard())
-            count ++;
-        if (clientBotSettings.isEnableNotifications())
-            count++;
+        if (!clientBotSettings.isSingleTab()) {
+            if (clientBotSettings.isReferralOn())
+                count++;
+            if (clientBotSettings.isEnableLeaderboard())
+                count++;
+            if (clientBotSettings.isEnableNotifications())
+                count++;
+        }
 
         return count;
     }

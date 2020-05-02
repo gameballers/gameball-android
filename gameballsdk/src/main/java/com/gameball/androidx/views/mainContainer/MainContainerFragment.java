@@ -56,6 +56,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
     private TextView currentPointsValue;
     private View loadingIndicatorBg;
     private RelativeLayout noInternetConnectionLayout;
+    private ImageButton noInternetConnectionCloseBtn;
     private SwipeRefreshLayout pullToRefresh;
     private AppBarLayout appBarLayout;
     private ConstraintLayout userDataLayout;
@@ -147,6 +148,7 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         currentPointRedemptionValue = rootView.findViewById(R.id.gb_wallet_point_redemption_value);
         loadingIndicatorBg = rootView.findViewById(R.id.gb_loading_indicator_bg);
         noInternetConnectionLayout = rootView.findViewById(R.id.gb_no_internet_layout);
+        noInternetConnectionCloseBtn = rootView.findViewById(R.id.gb_no_internet_btn_close);
         pullToRefresh = rootView.findViewById(R.id.pull_to_refresh);
         appBarLayout = rootView.findViewById(R.id.gb_appbar_layout);
         userDataLayout = rootView.findViewById(R.id.player_details_layout);
@@ -162,6 +164,13 @@ public class MainContainerFragment extends DialogFragment implements MainContain
                 } else {
                     pullToRefresh.setEnabled(false);
                 }
+            }
+        });
+
+        noInternetConnectionCloseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
     }
@@ -219,7 +228,14 @@ public class MainContainerFragment extends DialogFragment implements MainContain
         for (int i = 0; i < tabs.getTabCount(); i++) {
             switch (i) {
                 case 0:
-                    tabs.getTabAt(0).setIcon(R.drawable.gb_ic_trophy);
+                    if(!clientBotSettings.isSingleTab())
+                        tabs.getTabAt(0).setIcon(R.drawable.gb_ic_trophy);
+                    else {
+                        if (clientBotSettings.isReferralOn())
+                            tabs.getTabAt(0).setIcon(R.drawable.gb_ic_referral);
+                        else if (clientBotSettings.isEnableLeaderboard())
+                            tabs.getTabAt(0).setIcon(R.drawable.gb_ic_leaderboard);
+                    }
                     break;
                 case 1:
                     if (clientBotSettings.isReferralOn())
